@@ -15,7 +15,12 @@ const {
   editPlayer,
   editPlayerPage
 } = require("./routes/player");
-const { transactionHome } = require("./routes/transactions");
+
+// Transactions
+const {
+  transactionHome,
+  processTransaction
+} = require("./routes/transactions_master");
 const db = mysql.createConnection({
   host: "localhost", //comment missing
   user: "root", //comment missing
@@ -46,11 +51,14 @@ app.use(fileUpload()); //comment missing
 //comment this section
 app.get("/", getHomePage);
 app.get("/transactions", transactionHome);
-app.get("/add", addPlayerPage); //comment missing
-app.get("/edit/:id", editPlayerPage); //comment missing
-app.get("/delete/:id", deletePlayer); //comment missing
-app.post("/add", addPlayer); //comment missing
-app.post("/edit/:id", editPlayer); //comment missing
+
+// app.get("/add", addPlayerPage); //comment missing
+// app.get("/edit/:id", editPlayerPage); //comment missing
+// app.get("/delete/:id", deletePlayer); //comment missing
+// app.post("/add", addPlayer); //comment missing
+// app.post("/edit/:id", editPlayer); //comment missing
+
+app.get("/transactions/processTransaction", processTransaction);
 
 // set the app to listen on the port
 app.listen(port, () => {

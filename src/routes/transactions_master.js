@@ -7,6 +7,12 @@ module.exports = {
       message: ""
     });
   },
+  processTransaction: (req, res) => {
+    res.render("processTransaction.ejs", {
+      title: "Process Transaction",
+      message: ""
+    });
+  },
 
   addPlayer: (req, res) => {
     //comment missing

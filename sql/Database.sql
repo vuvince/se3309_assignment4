@@ -2,6 +2,8 @@
 # TABLE STRUCTURE FOR: Employee
 #
 
+USE CountryClub;
+
 DROP TABLE IF EXISTS `Employee`;
 
 CREATE TABLE `Employee` (
