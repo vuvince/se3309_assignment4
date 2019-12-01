@@ -16,6 +16,13 @@ const {
   editPlayerPage
 } = require("./routes/player");
 
+// Employees
+const {
+  employeeHome,
+  addEmployeePage,
+  addEmployee
+} = require("./routes/employees_master"); 
+
 // Customers
 const {
   customerHome,
@@ -46,6 +53,8 @@ const {
 const {
   productHome,
   allProducts,
+  totalSold,
+  totalSoldPage,
   viewClubs,
   viewCurlingBrooms,
   viewGoggles,
@@ -126,6 +135,14 @@ app.get("/products/viewClubs", viewGoggles);
 app.get("/products/viewClubs", viewRacquets);
 app.get("/products/viewCountRentable", viewCountRentable);
 app.get("/products/viewSpecificGoggles", viewSpecificGoggles);
+
+app.get("products/totalSold", totalSoldPage); 
+app.post("products/totalSold", totalSold); 
+
+// Employee routes
+app.get('/employees', employeeHome); 
+app.get('/addEmployee', addEmployeePage); 
+app.post('/addEmployee', addEmployee);
 
 // app.get("/add", addPlayerPage); //comment missing
 // app.get("/edit/:id", editPlayerPage); //comment missing

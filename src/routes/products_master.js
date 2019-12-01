@@ -168,4 +168,112 @@ module.exports = {
         });
 
     },
+
+    addBooking: (req, res) => { // Add a new training session to the database
+        let message = '';
+        let timeslotID = req.body.timeslotID;
+
+        let trainer_id = req.body.trainer_id;
+        // let trainerName = req.body.trainerName;
+        let firstName = req.body.first_name;
+        let lastName = req.body.last_name;
+        let phoneNumber = req.body.phoneNumber;
+        let email = req.body.email;
+        let date = convert(req.body.date);
+        let dateFor = convert(req.body.dateFor);
+        let bookedTime = req.body.bookedTime;
+
+    
+        
+
+        console.log("add booking called" +"\nbooked time: "+ bookedTime+"\ndate for: "+dateFor+"\ntrainer ID: "+trainer_id+ "\nfirst name: "+firstName + "\nlast name: "+lastName + "\nphone number: " +phoneNumber+"\nemail: " +email + "\ndate: " +date);
+        var sqlInsert = "INSERT INTO PersonalTraining (StudentID, TrainerID, TimeslotID, dateBooked) VALUES ((SELECT StudentID FROM Student WHERE firstName = '"+ firstName +"' AND lastName = '"+lastName+"' AND phoneNumber = '"+phoneNumber+"' AND email = '" + email+"'),'"+trainer_id+"','"+timeslotID+"','"+date+"');";
+
+
+        db.query(sqlInsert, function (err, result) {
+        // All info to be inserted
+
+            if (err) throw err;
+            console.log("1 record inserted");
+            res.redirect("/book/"+trainer_id);
+          });
+    },
+    trainerSpecialtyPage: (req, res) => { // Show all of a specific trainer's specialties and rank them 
+        let playerId = req.params.id;
+        let query = "SELECT * FROM `Trainer` JOIN TrainerSpecialty ON TrainerSpecialty.TrainerID = Trainer.TrainerID JOIN Specialty ON TrainerSpecialty.SpecialtyID = Specialty.SpecialtyID WHERE Trainer.TrainerID = '" + playerId + "' ORDER BY SkillLevel DESC";
+        db.query(query, (err, result) => { // Query the database
+            console.log(result);
+            if (err) {
+                return res.status(500).send(err);
+            }
+            res.render('view-specialty.ejs', {
+                title: 'View Specialty',
+                players: result,
+                message: ''
+            });
+        });
+    },
+    showBookedSessions: (req, res) => { // Show all of the training sessions that have been booked in the database
+        let playerId = req.params.id;
+        let query = "SELECT Timeslot.timeslotID as ID, trainingDate, startTime, endTime, Trainer.firstName as firstName, Trainer.lastName as lastName FROM PersonalTraining JOIN Timeslot ON PersonalTraining.TimeslotID = Timeslot.TimeslotID AND PersonalTraining.TrainerID = Timeslot.TrainerID JOIN Student ON PersonalTraining.StudentID = Student.StudentID JOIN Trainer ON PersonalTraining.TrainerID = Trainer.TrainerID WHERE Student.StudentID = '" + playerId+"'"; //comment missing
+        db.query(query, (err, result) => { // Query the database
+            console.log(result);
+            if (err) {
+                return res.status(500).send(err);
+            }
+            res.render('training-sessions.ejs', {
+                title: 'View Specialty',
+                players: result,
+                message: ''
+            });
+        });
+    },
+
+    bookSessionPage:(req, res)=>{ // Show all of a trainers booked sessions
+        let trainerID = req.params.id;
+        let query  = "SELECT * FROM Timeslot JOIN Trainer ON Trainer.TrainerID = Timeslot.TrainerID WHERE Trainer.TrainerID = '" + trainerID + "'AND isAvailable = true";
+
+        db.query(query, (err, result) => { // query database
+
+   
+            console.log("book session" +result);
+            if (err) {
+                return res.status(500).send(err);
+            }
+            res.render('book-session.ejs', {
+                title: 'Book Session',
+                players: result,
+                message: ''
+            });
+        });
+    },
+
+    totalSoldPage: (req, res) => {
+      res.render('totalProducts.ejs', {
+        title: "Total Products"
+      }) 
+    },
+
+    totalSold: (req, res) => {
+      let password = req.body.password; // FIX
+      let fName = req.body.fName; 
+      let lName = req.body.lName; 
+  
+      let query =
+      "SELECT COUNT(transactionID) as amountSold, SUM(totalPrice) as dollarSold FROM Transactions t, Employee e WHERE e.fName ='" 
+      + fName + "' AND e.lName='" + lName + "' AND e.password='" + password + "'"; 
+      
+      db.query(query, (err, result) => {
+          if(err) {
+              res.redirect("/products/totalSold");
+          }
+          // find a way to display the update when done
+          res.render("totalProducts.ejs", {
+            title: "Total Products sold for Employee",
+            products: result,
+            message: ""
+          });
+      });
+    }
+  
 };
