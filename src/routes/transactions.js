@@ -1,12 +1,13 @@
 const fs = require("fs");
 
 module.exports = {
-  addPlayerPage: (req, res) => {
-    res.render("add-player.ejs", {
-      title: "Welcome to Socka | Add a new player",
+  transactionHome: (req, res) => {
+    res.render("transactions.ejs", {
+      title: "Transactions",
       message: ""
     });
   },
+
   addPlayer: (req, res) => {
     //comment missing
     if (!req.files) {

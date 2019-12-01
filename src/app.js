@@ -15,6 +15,7 @@ const {
   editPlayer,
   editPlayerPage
 } = require("./routes/player");
+const { transactionHome } = require("./routes/transactions");
 const db = mysql.createConnection({
   host: "localhost", //comment missing
   user: "root", //comment missing
@@ -43,7 +44,8 @@ app.use(express.static(path.join(__dirname, "public"))); //comment missing
 app.use(fileUpload()); //comment missing
 
 //comment this section
-app.get("/", getHomePage); //comment missing
+app.get("/", getHomePage);
+app.get("/transactions", transactionHome);
 app.get("/add", addPlayerPage); //comment missing
 app.get("/edit/:id", editPlayerPage); //comment missing
 app.get("/delete/:id", deletePlayer); //comment missing
