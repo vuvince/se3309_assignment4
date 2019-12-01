@@ -114,25 +114,9 @@ module.exports = {
         });
     },
 
-    showTrainerPage: (req, res) => { // Show a list of 100 trainers
-        let query = "SELECT * FROM `Trainer` LIMIT 100";
-    
-        db.query(query, (err, result) => { // Query the database
-          if (err) {
-            res.redirect('/');
-          }
-          res.render('trainers.ejs', {
-            title: 'Welcome to The Rec Centre | View Players',
-            players: result
-          });
-        });
-      },
-
-      viewSpecificEquipment: (req, res) => { // See a list of equipment in a catalog with the ages of them
-        let catalog_id = req.params.id;
-        var today = new Date();
-        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(); // Use today's date as reference
-        let query = "SELECT * , DATEDIFF('"+date+"', datePurchased) AS daysOld FROM Equipment JOIN Catalog ON Catalog.CatalogID = Equipment.CatalogID WHERE Catalog.CatalogID = '"+catalog_id+"'";
+    viewSpecificEquipment: (req, res) => { // See a list of equipment in a catalog with the ages of them
+        let colour = req.body.colour;
+        let query = "SELECT * FROM Product p WHERE EXISTS (SELECT * FROM Goggles g WHERE p.productNo = g.productNo AND g.colour = '"+colour+"')";
     
         db.query(query, (err, result) => { // Query the database
           if (err) {
@@ -143,7 +127,7 @@ module.exports = {
             players: result
           });
         });
-      },
+    },
 
       deleteOldItem:(req, res) => { // Delete the items that are older that a specified amount of days
         let catalog_id = req.params.id;
@@ -162,7 +146,7 @@ module.exports = {
         });
 
     },
-    updatePrice:(req, res) => { // Update the price of all catalogs in a sport by a specified amount
+    updateProduct:(req, res) => { // Update the price of all catalogs in a sport by a specified amount
         let sport = req.body.sport; // Get sport 
         let price = req.body.price; // Get price to be changed
 
@@ -170,7 +154,7 @@ module.exports = {
         
         console.log(price);
 
-        var sqlUpdate = "UPDATE Catalog JOIN Sport ON Sport.sportID = Catalog.sportID SET price = price + '"+price+"' WHERE Sport.sportName = '"+sport+"'";
+        var sqlUpdate = "UPDATE Product = Product.productNo SET rentable = WHEN Product.sName = '"+sport+"' THEN rentable = FALSE AND purchasable = TRUE END WHERE productNo > 1";
 
         db.query(sqlUpdate, function (err, result){ // Query the database
             if(err) throw err;
