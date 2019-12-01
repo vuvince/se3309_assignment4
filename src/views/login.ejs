@@ -1,5 +1,5 @@
 
-
+<% include partials/header.ejs %>
 <html>
     <head>
     <title>Login</title>
@@ -15,15 +15,18 @@
     <div <div align="center">
     
     <h3>Login</h3>
-        <form id="login-form" method="post" action="auth_login.php" >
+    <% if (message != '') { %> <% if (message == "Succesfully Logged In") { %> <p class="text-center text-success"><%= message %> as <%= employees[0].fName %></p><% } else {%>
+        <p class="text-center text-danger"><%= message %></p>
+        <% } }%>
+        <form id="login-form" method="post">
             <table border="0.5" >
                 <tr>
-                    <td><label for="username">Username</label></td>
-                    <td><input type="text" name="username" id="username"></td>
+                    <td><label for="employeeID">Employee ID</label></td>
+                    <td><input type="text" name="employeeID" id="employeeID"></td>
                 </tr>
                 <tr>
-                    <td><label for="pass">Password</label></td>
-                    <td><input type="password" name="pass" id="pass"></input></td>
+                    <td><label for="ePassword">Password</label></td>
+                    <td><input type="password" name="ePassword" id="ePassword"></input></td>
                 </tr>
                 
                 <tr>
