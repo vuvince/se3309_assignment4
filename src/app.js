@@ -46,7 +46,9 @@ const {
   viewEmpTrans,
   viewCustTransPage,
   viewCustTrans,
-  viewTransTotalPage
+  viewTransTotalPage,
+  amountOnDate,
+  amountOnDatePage
 } = require("./routes/transactions_master");
 
 //Products
@@ -67,7 +69,7 @@ const {
 const db = mysql.createConnection({
   host: "localhost", //comment missing
   user: "root", //comment missing
-  password: "password", //comment missing
+  password: "root", //comment missing
   // database: "CountryClub"
   database: "CountryClub"
 }); //comment missing
@@ -105,6 +107,8 @@ app.post("/transactions/employeeTransRecord", viewEmpTrans);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
 app.get("/transactions/customerGrandTotal", viewTransTotalPage);
+app.get("/transactions/transactionsOnDate", amountOnDatePage);
+app.post("/transactions/transactionsOnDate", amountOnDate); 
 
 // customer routes
 app.get("/customers", customerHome);

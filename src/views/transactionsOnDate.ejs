@@ -1,0 +1,47 @@
+<% include partials/header.ejs %>
+<div class="table-wrapper">
+    <a href="/transactions">Back to Transactions</a>
+    <h2>Find Employee Transaction History</h2>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+  
+    <form method="post">
+        <label for="tDate">Date (YYYY-MM-DD): </label>
+        <input type="text" id="tDate" name="tDate">
+        <input type="submit" name="submit" value="View Results">
+    </form>
+  <% if (transactions.length > 0) {%>
+<style>
+  .tableData{
+  color:black;
+}
+  </style>
+  
+
+  <!-- View training sessions-->
+    <body>
+    <table class="table table-hovered">
+      <thead class="thead-dark">
+        <!-- Display columns for session-->
+        <h2>Results</h2>
+        <blockquote>All transactions placed on this date</blockquote>
+      <tr>
+        <th scope="col">Total Amount on this Date</th>
+      </tr>
+      </thead>
+      <!-- Add booked  sessions to table -->
+      <tbody>
+      <% transactions.forEach((transaction, index) => { %>
+        <tr>
+          <th scope="row" class="tableData">$<%= transaction.totalPrice %></th>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <!-- Default text if no transactions-->
+    <blockquote>No results found for transactions on this date</blockquote>
+  <% } %>
+</div>
+</div>
+</body>
+</html>
