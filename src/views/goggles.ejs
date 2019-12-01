@@ -25,14 +25,12 @@
         <!-- Retrieves equipment and displays in table-->
       <% Goggles.forEach((goggle, index) => { %>
         <tr>
-          <th scope="row" class="tableData"><%= Goggles.productNo %></th>
-
-          <td class="tableData"><%= goggle.productNo %></td>
+          <th scope="row" class="tableData"><%= goggle.productNo %></th>
           <td class="tableData"><%= goggle.size %></td>
           <td class="tableData"><%= goggle.style %></td>
           <td class="tableData"><%= goggle.colour %></td>
           <td>
-            <a href="/goggles/<%= CurlingBroom.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Curling Brooms</a>
+            <a href="/goggles/<%= goggle.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Curling Brooms</a>
           </td>
         </tr>
       <% }) %>

@@ -25,12 +25,10 @@
       <% Club.forEach((club, index) => { %>
         <tr>
           <th scope="row" class="tableData"><%= club.productNo %></th>
-
-          <td class="tableData"><%= club.productNo %></td>
           <td class="tableData"><%= club.cLength %></td>
           <td class="tableData"><%= club.cType %></td>
           <td>
-            <a href="/clubs/<%= Club.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Clubs</a>
+            <a href="/clubs/<%= club.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Clubs</a>
           </td>
         </tr>
       <% }) %>

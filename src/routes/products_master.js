@@ -1,6 +1,11 @@
 const fs = require('fs');
 
 
+void function getAgeGroup(){
+    this.value.toString();
+    var o = h;
+}
+
 module.exports = {
 
     productHome: (req, res) => {
@@ -114,9 +119,24 @@ module.exports = {
         });
     },
 
-    viewSpecificEquipment: (req, res) => { // See a list of equipment in a catalog with the ages of them
-        let colour = req.body.colour;
-        let query = "SELECT * FROM Product p WHERE EXISTS (SELECT * FROM Goggles g WHERE p.productNo = g.productNo AND g.colour = '"+colour+"')";
+    viewSpecificGoggles: (req, res) => { // See a list of equipment in a catalog with the ages of them
+        let age = req.body.ageGroup;
+        let query = "SELECT * FROM Product p WHERE EXISTS (SELECT * FROM Racquets r WHERE p.productNo = r.productNo AND r.ageGroup = '"+age+"')";
+    
+        db.query(query, (err, result) => { // Query the database
+          if (err) {
+            res.redirect('/');
+          }
+          res.render('specific-equipment.ejs', {
+            title: 'Welcome to The Rec Centre | View Players',
+            players: result
+          });
+        });
+    },
+
+    viewCountRentable: (req, res) => { // See a list of equipment in a catalog with the ages of them
+        let rentable = req.body.rentable;
+        let query = "SELECT COUNT(rentable) FROM Product WHERE rentable = '"+rentable+"')";
     
         db.query(query, (err, result) => { // Query the database
           if (err) {

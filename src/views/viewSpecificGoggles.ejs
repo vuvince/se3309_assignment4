@@ -5,10 +5,19 @@
     }
 
 </style> 
+<div class="table-wrapper">
+    <a href="/products">Back to Products</a>
+    <h2>Find Specific Racquets</h2>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <form method="post">
+        <label for="ageGroup">Age Group</label>
+        <input type="text" id="ageGroup" name="ageGroup">
+        <input type="submit" name="submit" value="View Results">
+    </form>
 
 <!-- View list of all equipment-->
 <div class="table-wrapper">
-  <h2 class="tableData">View All Racquets</h2>
+  <h2 class="tableData">View Racquets Based on Age Group</h2>
   <!-- Adds titles to table-->
   <% if (Racquet.length > 0) {%>
     <body>
@@ -29,9 +38,6 @@
           <td class="tableData"><%= racquet.rLength %></td>
           <td class="tableData"><%= racquet.ageGroup %></td>
           <td class="tableData"><%= racquet.rWeight %></td>
-          <td>
-            <a href="/racquets/<%= racquet.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Racquets</a>
-          </td>
         </tr>
       <% }) %>
       </tbody>
