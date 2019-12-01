@@ -1,12 +1,14 @@
-#
-# TABLE STRUCTURE FOR: Employee
-#
+DROP SCHEMA IF EXISTS CountryClub;
 
 CREATE SCHEMA CountryClub;
 
 USE CountryClub;
 
-DROP TABLE IF EXISTS `Employee`;
+-- #
+-- # TABLE STRUCTURE FOR: Employee
+-- #
+
+-- DROP TABLE IF EXISTS `Employee`;
 
 CREATE TABLE `Employee` (
   `employeeID` int(15) unsigned NOT NULL AUTO_INCREMENT,
@@ -2023,7 +2025,7 @@ INSERT INTO `Employee` (`employeeID`, `ePassword`, `fName`, `lName`, `phoneNum`)
 # TABLE STRUCTURE FOR: Customer
 #
 
-DROP TABLE IF EXISTS `Customer`;
+-- DROP TABLE IF EXISTS `Customer`;
 
 CREATE TABLE `Customer` (
   `customerEmail` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -6058,9 +6060,11 @@ INSERT INTO `Transactions` (`transactionID`, `tTime`, `tDate`, `totalPrice`, `em
 INSERT INTO `Transactions` (`transactionID`, `tTime`, `tDate`, `totalPrice`, `employeeID`, `customerEmail`) VALUES (1999, '01:29:49', '1986-07-26', '424.6', 1999, 'zwuckert@example.net');
 INSERT INTO `Transactions` (`transactionID`, `tTime`, `tDate`, `totalPrice`, `employeeID`, `customerEmail`) VALUES (2000, '01:36:02', '1978-01-08', '54353200', 2000, 'zyost@example.org');
 
-#
-# TABLE STRUCTURE FOR: Sport
-#
+
+
+-- #
+-- # TABLE STRUCTURE FOR: `Sport`
+-- #
 
 DROP TABLE IF EXISTS `Sport`;
 
@@ -6069,138 +6073,902 @@ CREATE TABLE `Sport` (
   PRIMARY KEY (`sName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `Sport` (`sName`) VALUES (' curling');
-INSERT INTO `Sport` (`sName`) VALUES (' golf');
-INSERT INTO `Sport` (`sName`) VALUES (' ping pong');
-INSERT INTO `Sport` (`sName`) VALUES (' squash');
-INSERT INTO `Sport` (`sName`) VALUES (' swimming');
-INSERT INTO `Sport` (`sName`) VALUES (' tennis');
 INSERT INTO `Sport` (`sName`) VALUES ('badminton');
+INSERT INTO `Sport` (`sName`) VALUES ('curling');
+INSERT INTO `Sport` (`sName`) VALUES ("swimming");
+INSERT INTO `Sport` (`sName`) VALUES ('pingpong');
+INSERT INTO `Sport` (`sName`) VALUES ('squash');
+INSERT INTO `Sport` (`sName`) VALUES ('golf');
+INSERT INTO `Sport` (`sName`) VALUES ('tennis');
 
-#
-# TABLE STRUCTURE FOR: Product
-#
 
-DROP TABLE IF EXISTS `Product`;
+-- #
+-- # TABLE STRUCTURE FOR: Product
+-- #
+
+DROP TABLE IF EXISTS Product;
 
 CREATE TABLE `Product` (
-  `productNo` bigint(15) unsigned NOT NULL AUTO_INCREMENT,
+  `productNo` bigint(15) unsigned NOT NULL,
   `rentable` tinyint(1) DEFAULT NULL,
   `purchasable` tinyint(1) DEFAULT NULL,
-  `price` int(15) unsigned NOT NULL,
+  `price` int(15) unsigned DEFAULT NULL,
   `brand` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `sName` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`productNo`),
   KEY `sName` (`sName`),
   CONSTRAINT `Product_ibfk_1` FOREIGN KEY (`sName`) REFERENCES `Sport` (`sName`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('1', 0, 1, 4198, 'a', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('2', 0, 1, 1, 'a', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('3', 0, 1, 13380276, 'a', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('4', 1, 0, 0, 'b', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('5', 0, 0, 221, 'c', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('6', 1, 1, 14796, 'a', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('7', 0, 0, 2431983, 'b', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('8', 0, 1, 74329, 'b', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('9', 1, 0, 69193114, 'a', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('10', 1, 0, 3, 'a', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('11', 0, 0, 0, 'a', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('12', 1, 0, 168, 'c', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('13', 0, 0, 14, 'b', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('14', 1, 1, 0, 'c', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('15', 0, 0, 464062, 'c', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('16', 0, 0, 12112, 'a', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('17', 1, 0, 6451, 'b', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('18', 0, 0, 5030, 'b', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('19', 0, 0, 13, 'a', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('20', 1, 1, 15874, 'c', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('21', 0, 0, 3339, 'a', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('22', 1, 0, 135920, 'c', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('23', 1, 0, 1094, 'c', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('24', 0, 1, 0, 'b', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('25', 0, 1, 7, 'b', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('26', 0, 0, 44839, 'b', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('27', 1, 1, 554791, 'a', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('28', 0, 0, 1, 'b', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('29', 1, 1, 3782, 'a', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('30', 1, 0, 1, 'a', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('31', 0, 1, 80, 'a', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('32', 0, 0, 36570634, 'a', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('33', 1, 1, 11, 'a', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('34', 0, 0, 109, 'c', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('35', 0, 1, 18498224, 'c', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('36', 1, 0, 589, 'b', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('37', 1, 0, 922, 'b', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('38', 0, 0, 13971453, 'a', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('39', 0, 1, 0, 'c', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('40', 0, 0, 1, 'c', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('41', 1, 0, 138, 'b', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('42', 0, 1, 453, 'a', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('43', 1, 0, 5364, 'b', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('44', 1, 1, 95261, 'a', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('45', 1, 0, 249220435, 'b', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('46', 1, 1, 34646944, 'b', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('47', 1, 0, 10, 'a', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('48', 0, 1, 3, 'a', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('49', 1, 0, 234, 'a', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('50', 0, 0, 474, 'a', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('51', 1, 0, 1, 'b', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('52', 1, 0, 159450, 'c', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('53', 0, 0, 1, 'a', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('54', 0, 1, 3317, 'b', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('55', 0, 1, 52, 'b', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('56', 0, 1, 3, 'b', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('57', 1, 0, 42, 'c', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('58', 0, 1, 2115, 'b', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('59', 0, 0, 2, 'c', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('60', 1, 0, 113797, 'b', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('61', 1, 1, 48841839, 'b', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('62', 1, 0, 3812327, 'b', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('63', 0, 1, 5, 'c', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('64', 0, 1, 5419, 'a', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('65', 1, 0, 297794946, 'c', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('66', 0, 0, 284179, 'b', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('67', 1, 1, 37676162, 'b', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('68', 1, 1, 326, 'c', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('69', 0, 0, 7, 'a', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('70', 0, 1, 37978, 'a', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('71', 1, 1, 1, 'c', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('72', 0, 0, 316672, 'b', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('73', 1, 0, 173649250, 'c', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('74', 1, 1, 3416, 'c', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('75', 0, 0, 441, 'b', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('76', 0, 0, 455992038, 'b', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('77', 1, 0, 4302507, 'b', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('78', 0, 0, 15705048, 'a', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('79', 0, 1, 5808821, 'c', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('80', 0, 0, 0, 'a', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('81', 0, 1, 0, 'a', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('82', 0, 0, 0, 'c', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('83', 0, 1, 7040, 'c', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('84', 0, 1, 481885632, 'c', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('85', 1, 1, 309478, 'a', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('86', 0, 0, 1, 'c', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('87', 1, 0, 92588437, 'c', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('88', 1, 0, 1, 'c', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('89', 0, 1, 5189, 'a', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('90', 0, 1, 2965238, 'c', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('91', 0, 0, 1, 'a', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('92', 1, 1, 133516751, 'b', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('93', 0, 0, 5, 'c', ' golf');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('94', 1, 1, 44761, 'a', ' ping pong');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('95', 0, 0, 46180, 'a', ' squash');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('96', 0, 1, 11415876, 'b', ' swimming');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('97', 0, 0, 44006, 'b', ' tennis');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('98', 1, 1, 1955, 'a', 'badminton');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('99', 0, 1, 86125, 'b', ' curling');
-INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES ('100', 0, 0, 43106, 'b', ' golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (100, 1, 0, 265, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (101, 1, 0, 360, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (102, 1, 0, 415, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (103, 1, 1, 95, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (104, 1, 0, 84, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (105, 1, 0, 122, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (106, 1, 0, 136, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (107, 1, 0, 240, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (108, 1, 0, 282, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (109, 0, 0, 21, 'b', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (110, 1, 0, 21, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (111, 1, 1, 162, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (112, 1, 0, 318, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (113, 1, 0, 154, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (114, 1, 1, 138, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (115, 1, 1, 431, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (116, 1, 0, 403, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (117, 1, 0, 333, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (118, 1, 0, 355, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (119, 0, 0, 46, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (120, 1, 0, 155, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (121, 1, 0, 490, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (122, 1, 0, 489, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (123, 1, 0, 151, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (124, 1, 0, 304, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (125, 1, 0, 332, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (126, 1, 1, 379, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (127, 1, 0, 227, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (128, 1, 0, 222, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (129, 1, 0, 485, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (130, 1, 0, 397, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (131, 1, 1, 199, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (132, 1, 0, 60, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (133, 1, 1, 305, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (134, 1, 1, 339, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (135, 1, 0, 463, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (136, 1, 0, 269, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (137, 1, 1, 252, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (138, 1, 0, 448, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (139, 0, 0, 128, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (140, 1, 0, 315, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (141, 1, 0, 182, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (142, 1, 0, 98, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (143, 1, 0, 297, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (144, 0, 1, 143, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (145, 1, 1, 243, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (146, 1, 1, 180, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (147, 1, 0, 276, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (148, 1, 0, 171, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (149, 1, 0, 184, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (150, 0, 1, 463, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (151, 1, 0, 455, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (152, 0, 0, 290, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (153, 0, 1, 383, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (154, 1, 0, 119, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (155, 1, 0, 363, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (156, 1, 0, 117, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (157, 0, 0, 283, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (158, 1, 0, 171, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (159, 0, 0, 376, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (160, 1, 1, 263, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (161, 1, 0, 99, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (162, 1, 1, 402, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (163, 1, 1, 57, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (164, 1, 0, 80, 'b', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (165, 1, 1, 300, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (166, 1, 1, 342, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (167, 1, 1, 222, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (168, 1, 1, 7, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (169, 1, 0, 273, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (170, 1, 1, 140, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (171, 1, 0, 348, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (172, 0, 0, 458, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (173, 1, 1, 100, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (174, 1, 0, 119, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (175, 1, 1, 363, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (176, 1, 1, 248, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (177, 1, 0, 326, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (178, 1, 0, 34, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (179, 0, 0, 62, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (180, 1, 0, 469, 'b', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (181, 1, 0, 209, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (182, 1, 1, 337, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (183, 1, 0, 464, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (184, 1, 1, 141, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (185, 0, 0, 258, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (186, 1, 0, 154, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (187, 1, 0, 347, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (188, 1, 0, 164, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (189, 1, 1, 216, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (190, 1, 0, 312, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (191, 1, 0, 24, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (192, 1, 1, 117, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (193, 1, 0, 412, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (194, 1, 0, 257, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (195, 1, 1, 28, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (196, 1, 1, 301, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (197, 1, 0, 425, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (198, 1, 0, 61, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (199, 1, 0, 290, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (200, 0, 0, 399, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (201, 1, 0, 308, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (202, 1, 0, 419, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (203, 0, 1, 383, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (204, 0, 0, 173, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (205, 1, 0, 49, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (206, 1, 0, 266, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (207, 1, 0, 92, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (208, 1, 0, 413, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (209, 1, 0, 376, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (210, 1, 0, 497, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (211, 1, 1, 200, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (212, 1, 0, 427, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (213, 1, 1, 350, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (214, 1, 1, 423, 'b', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (215, 1, 0, 164, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (216, 1, 0, 181, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (217, 1, 1, 96, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (218, 1, 1, 190, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (219, 1, 1, 86, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (220, 1, 0, 214, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (221, 1, 0, 115, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (222, 1, 0, 385, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (223, 1, 0, 401, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (224, 1, 0, 419, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (225, 1, 1, 338, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (226, 1, 0, 300, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (227, 1, 0, 132, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (228, 1, 0, 149, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (229, 1, 0, 378, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (230, 1, 0, 74, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (231, 1, 0, 362, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (232, 1, 0, 162, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (233, 1, 1, 473, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (234, 1, 0, 379, 'b', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (235, 0, 1, 323, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (236, 1, 0, 258, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (237, 1, 0, 21, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (238, 0, 0, 453, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (239, 1, 0, 332, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (240, 1, 0, 398, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (241, 1, 0, 187, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (242, 1, 0, 420, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (243, 1, 0, 77, 'b', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (244, 1, 1, 226, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (245, 1, 0, 155, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (246, 1, 0, 290, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (247, 1, 0, 295, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (248, 1, 0, 84, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (249, 1, 0, 256, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (250, 1, 0, 472, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (251, 1, 1, 217, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (252, 1, 0, 9, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (253, 1, 1, 374, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (254, 1, 0, 441, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (255, 1, 1, 359, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (256, 0, 0, 412, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (257, 1, 1, 465, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (258, 0, 0, 12, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (259, 1, 1, 489, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (260, 1, 0, 357, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (261, 1, 0, 423, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (262, 1, 1, 473, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (263, 1, 1, 425, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (264, 1, 0, 452, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (265, 1, 1, 352, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (266, 1, 0, 185, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (267, 1, 0, 201, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (268, 1, 0, 295, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (269, 1, 0, 265, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (270, 1, 1, 105, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (271, 1, 0, 400, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (272, 1, 0, 193, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (273, 1, 0, 33, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (274, 1, 0, 103, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (275, 1, 0, 330, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (276, 0, 0, 98, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (277, 1, 1, 422, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (278, 1, 1, 433, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (279, 1, 1, 73, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (280, 1, 0, 438, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (281, 1, 0, 150, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (282, 1, 0, 202, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (283, 1, 1, 446, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (284, 0, 0, 201, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (285, 1, 0, 135, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (286, 1, 1, 229, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (287, 1, 0, 257, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (288, 1, 0, 71, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (289, 1, 0, 117, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (290, 1, 1, 253, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (291, 1, 0, 379, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (292, 1, 0, 67, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (293, 1, 1, 397, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (294, 1, 0, 348, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (295, 0, 0, 305, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (296, 1, 0, 362, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (297, 1, 0, 490, 'b', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (298, 0, 0, 364, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (299, 1, 1, 178, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (300, 1, 0, 150, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (301, 1, 0, 106, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (302, 1, 0, 191, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (303, 1, 1, 5, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (304, 0, 0, 29, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (305, 1, 0, 384, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (306, 1, 0, 131, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (307, 1, 1, 48, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (308, 1, 1, 326, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (309, 1, 1, 442, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (310, 1, 0, 167, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (311, 1, 0, 270, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (312, 1, 0, 197, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (313, 1, 0, 63, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (314, 1, 0, 41, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (315, 1, 1, 322, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (316, 1, 0, 47, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (317, 1, 0, 345, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (318, 1, 1, 301, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (319, 1, 0, 395, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (320, 1, 0, 383, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (321, 1, 0, 228, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (322, 1, 1, 369, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (323, 1, 0, 27, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (324, 1, 1, 34, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (325, 1, 0, 73, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (326, 0, 0, 252, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (327, 1, 0, 359, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (328, 1, 0, 389, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (329, 0, 0, 208, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (330, 1, 1, 369, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (331, 1, 0, 250, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (332, 1, 0, 270, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (333, 1, 1, 46, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (334, 1, 0, 44, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (335, 1, 1, 342, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (336, 1, 1, 227, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (337, 1, 1, 154, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (338, 1, 0, 477, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (339, 1, 0, 408, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (340, 1, 0, 80, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (341, 1, 0, 453, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (342, 1, 0, 288, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (343, 1, 0, 267, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (344, 1, 0, 424, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (345, 1, 1, 77, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (346, 1, 1, 279, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (347, 1, 0, 167, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (348, 1, 0, 6, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (349, 1, 1, 120, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (350, 1, 1, 299, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (351, 0, 0, 178, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (352, 1, 1, 81, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (353, 0, 0, 490, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (354, 0, 0, 498, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (355, 1, 0, 48, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (356, 1, 1, 44, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (357, 1, 0, 43, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (358, 1, 1, 202, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (359, 1, 0, 186, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (360, 0, 1, 445, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (361, 1, 0, 240, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (362, 1, 1, 361, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (363, 1, 0, 6, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (364, 1, 0, 88, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (365, 1, 1, 442, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (366, 1, 1, 199, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (367, 1, 1, 108, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (368, 1, 0, 120, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (369, 1, 1, 238, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (370, 1, 1, 266, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (371, 1, 0, 82, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (372, 1, 0, 220, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (373, 1, 1, 388, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (374, 1, 1, 255, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (375, 1, 0, 422, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (376, 1, 1, 204, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (377, 1, 0, 0, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (378, 1, 1, 345, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (379, 1, 1, 463, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (380, 1, 0, 358, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (381, 1, 0, 279, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (382, 1, 0, 158, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (383, 1, 0, 190, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (384, 1, 1, 203, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (385, 1, 0, 182, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (386, 1, 1, 121, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (387, 1, 0, 16, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (388, 1, 0, 11, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (389, 1, 1, 190, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (390, 0, 0, 93, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (391, 1, 0, 426, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (392, 1, 0, 176, 'c', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (393, 1, 0, 48, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (394, 1, 1, 342, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (395, 1, 1, 11, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (396, 0, 0, 122, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (397, 0, 0, 304, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (398, 1, 0, 377, 'a', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (399, 1, 0, 386, 'b', "swimming");
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (400, 1, 1, 8, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (401, 1, 1, 483, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (402, 1, 1, 247, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (403, 1, 0, 393, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (404, 1, 1, 353, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (405, 1, 0, 264, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (406, 1, 1, 54, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (407, 1, 0, 109, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (408, 1, 1, 398, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (409, 0, 1, 490, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (410, 1, 0, 440, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (411, 1, 0, 36, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (412, 1, 0, 368, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (413, 1, 0, 297, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (414, 1, 0, 269, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (415, 1, 0, 14, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (416, 1, 1, 143, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (417, 1, 0, 463, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (418, 1, 0, 327, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (419, 1, 0, 101, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (420, 1, 0, 16, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (421, 1, 0, 172, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (422, 1, 1, 221, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (423, 1, 0, 497, 'b', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (424, 0, 0, 177, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (425, 1, 1, 181, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (426, 0, 0, 59, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (427, 1, 0, 276, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (428, 1, 0, 425, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (429, 1, 1, 114, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (430, 1, 0, 304, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (431, 1, 1, 473, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (432, 1, 0, 147, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (433, 1, 1, 140, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (434, 1, 0, 288, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (435, 1, 0, 352, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (436, 1, 1, 208, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (437, 1, 1, 485, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (438, 1, 0, 381, 'b', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (439, 1, 1, 170, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (440, 1, 1, 461, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (441, 1, 0, 221, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (442, 1, 0, 216, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (443, 1, 0, 437, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (444, 1, 0, 111, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (445, 1, 1, 75, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (446, 1, 1, 99, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (447, 1, 0, 26, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (448, 1, 1, 197, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (449, 1, 0, 314, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (450, 1, 0, 22, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (451, 1, 1, 232, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (452, 1, 1, 225, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (453, 1, 0, 463, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (454, 1, 0, 236, 'a', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (455, 1, 0, 146, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (456, 1, 0, 171, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (457, 1, 0, 455, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (458, 1, 1, 131, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (459, 1, 1, 499, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (460, 0, 0, 219, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (461, 1, 1, 205, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (462, 1, 0, 143, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (463, 1, 0, 258, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (464, 1, 0, 138, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (465, 1, 0, 158, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (466, 1, 0, 51, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (467, 1, 0, 351, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (468, 1, 0, 99, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (469, 1, 0, 445, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (470, 1, 0, 467, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (471, 1, 1, 315, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (472, 1, 0, 231, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (473, 1, 0, 279, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (474, 1, 0, 419, 'a', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (475, 1, 1, 73, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (476, 1, 1, 419, 'b', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (477, 1, 1, 289, 'a', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (478, 0, 0, 397, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (479, 1, 0, 162, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (480, 1, 1, 448, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (481, 1, 0, 394, 'b', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (482, 1, 0, 254, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (483, 1, 0, 446, 'b', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (484, 0, 1, 493, 'a', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (485, 1, 0, 243, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (486, 1, 0, 462, 'c', 'badminton');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (487, 1, 0, 247, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (488, 1, 1, 289, 'c', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (489, 0, 0, 355, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (490, 1, 1, 181, 'a', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (491, 1, 0, 477, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (492, 0, 0, 335, 'c', 'tennis');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (493, 1, 0, 148, 'b', 'curling');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (494, 1, 0, 363, 'b', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (495, 1, 1, 206, 'c', 'golf');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (496, 1, 1, 486, 'a', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (497, 1, 0, 229, 'c', 'squash');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (498, 1, 0, 334, 'c', 'pingpong');
+INSERT INTO `Product` (`productNo`, `rentable`, `purchasable`, `price`, `brand`, `sName`) VALUES (499, 1, 1, 481, 'a', 'squash');
 
-#
-# TABLE STRUCTURE FOR: Item
-#
 
-DROP TABLE IF EXISTS `Item`;
+
+-- DROP TABLE IF EXISTS `Club`;
+
+CREATE TABLE `Club` (
+  `productNo` bigint(15) unsigned NOT NULL,
+  `cLength` float DEFAULT NULL,
+  `cType` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`productNo`),
+  CONSTRAINT `Club_ibfk_1` FOREIGN KEY (`productNo`) REFERENCES `Product` (`productNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (100, '70.37', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (101, '38.38', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (102, '17.17', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (103, '49', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (104, '50.72', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (105, '42.27', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (106, '69.88', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (107, '24.83', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (108, '33.01', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (109, '38', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (110, '39.84', 'hybrid');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (111, '37.61', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (112, '24.77', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (113, '45.15', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (114, '7.1', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (115, '1.03', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (116, '63.05', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (117, '17.9', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (118, '11.75', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (119, '10.78', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (120, '14.65', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (121, '53.05', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (122, '13.63', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (123, '20.94', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (124, '59.58', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (125, '38.69', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (126, '31.75', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (127, '75.89', 'hybrid');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (128, '55.55', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (129, '63.38', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (130, '57.45', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (131, '34.33', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (132, '73.23', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (133, '13.85', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (134, '50.37', 'hybrid');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (135, '8.59', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (136, '69.8', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (137, '5.54', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (138, '41.15', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (139, '6.04', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (140, '10.78', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (141, '19.33', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (142, '2.44', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (143, '49.65', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (144, '15', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (145, '64.98', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (146, '72.77', 'hybrid');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (147, '61.45', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (148, '72.26', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (149, '26.44', 'hybrid');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (150, '5.18', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (151, '6.93', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (152, '67.27', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (153, '23.62', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (154, '36.61', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (155, '40.56', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (156, '48.59', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (157, '36.24', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (158, '57.3', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (159, '6.63', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (160, '66.69', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (161, '54.2', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (162, '54.97', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (163, '19.38', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (164, '60.75', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (165, '16.82', 'hybrid');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (166, '57.14', 'hybrid');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (167, '55.11', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (168, '46.8', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (169, '17.74', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (170, '61.79', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (171, '44.69', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (172, '58.41', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (173, '15.18', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (174, '53.76', 'hybrid');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (175, '56.71', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (176, '21.8', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (177, '64.52', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (178, '3.8', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (179, '33.44', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (180, '33.23', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (181, '12.61', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (182, '44.7', 'hybrid');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (183, '43.99', 'hybrid');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (184, '43.55', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (185, '48.23', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (186, '64.46', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (187, '3.83', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (188, '44.3', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (189, '65.76', 'wedge');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (190, '27.77', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (191, '62.52', 'wood');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (192, '67.26', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (193, '51.52', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (194, '3.3', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (195, '9.9', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (196, '10.12', 'iron');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (197, '61', 'driver');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (198, '1.26', 'putter');
+INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES (199, '26.02', 'hybrid');
+
+
+-- #
+-- # TABLE STRUCTURE FOR: `CurlingBroom`
+-- #
+
+-- DROP TABLE IF EXISTS `CurlingBroom`;
+
+CREATE TABLE `CurlingBroom` (
+  `productNo` bigint(15) unsigned NOT NULL,
+  `shaftMaterial` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `bristleHardness` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `shaftLength` float DEFAULT NULL,
+  PRIMARY KEY (`productNo`),
+  CONSTRAINT `CurlingBroom_ibfk_1` FOREIGN KEY (`productNo`) REFERENCES `Product` (`productNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (200, 'composite', "medium", '27.24');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (201, 'wood', 'soft', '72.22');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (202, 'wood', 'hard', '65.03');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (203, 'plastic', 'hard', '28.62');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (204, 'wood', 'hard', '35.97');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (205, 'plastic', "medium", '28.26');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (206, 'plastic', 'hard', '26.33');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (207, 'wood', 'hard', '75.87');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (208, 'plastic', 'hard', '48.18');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (209, 'plastic', "medium", '7.62');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (210, 'wood', "medium", '35.34');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (211, 'composite', 'soft', '47.85');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (212, 'metal', 'soft', '25.43');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (213, 'plastic', "medium", '12.38');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (214, 'wood', 'soft', '16.24');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (215, 'metal', 'hard', '21.3');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (216, 'composite', 'soft', '65.12');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (217, 'composite', "medium", '20.13');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (218, 'plastic', "medium", '49.11');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (219, 'wood', 'soft', '15.19');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (220, 'plastic', 'soft', '38.75');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (221, 'metal', 'hard', '55.28');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (222, 'composite', "medium", '53.11');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (223, 'wood', 'hard', '22.22');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (224, 'metal', 'soft', '28.42');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (225, 'wood', 'soft', '33.86');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (226, 'composite', 'soft', '39.24');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (227, 'plastic', 'hard', '11.12');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (228, 'wood', "medium", '50.12');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (229, 'composite', "medium", '17.29');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (230, 'plastic', 'hard', '9.73');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (231, 'metal', 'hard', '73.02');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (232, 'metal', "medium", '67.51');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (233, 'composite', 'hard', '52.19');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (234, 'composite', 'hard', '57.78');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (235, 'plastic', 'hard', '39.32');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (236, 'plastic', "medium", '44.32');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (237, 'plastic', "medium", '43.22');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (238, 'metal', 'soft', '17.08');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (239, 'metal', "medium", '67.16');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (240, 'wood', "medium", '2.66');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (241, 'composite', 'soft', '55.73');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (242, 'plastic', 'soft', '12.46');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (243, 'wood', 'soft', '9.28');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (244, 'wood', 'hard', '29.67');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (245, 'composite', "medium", '50.13');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (246, 'plastic', 'hard', '58.21');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (247, 'wood', 'soft', '17.7');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (248, 'composite', 'hard', '3.31');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (249, 'plastic', 'hard', '50.16');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (250, 'wood', 'hard', '35.54');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (251, 'plastic', "medium", '63.29');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (252, 'composite', 'soft', '22.46');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (253, 'plastic', 'soft', '1.73');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (254, 'composite', "medium", '74.97');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (255, 'wood', 'hard', '32.1');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (256, 'composite', "medium", '8.78');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (257, 'wood', 'soft', '46.06');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (258, 'wood', 'hard', '73.97');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (259, 'metal', 'soft', '6.27');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (260, 'plastic', 'soft', '51.52');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (261, 'plastic', 'soft', '17.24');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (262, 'composite', "medium", '64.65');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (263, 'composite', 'hard', '41.92');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (264, 'wood', 'soft', '36.28');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (265, 'metal', "medium", '6.49');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (266, 'metal', 'soft', '3.87');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (267, 'plastic', 'soft', '14.7');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (268, 'composite', 'soft', '40.89');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (269, 'composite', 'soft', '42.16');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (270, 'plastic', "medium", '22.79');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (271, 'plastic', 'hard', '20.64');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (272, 'wood', 'soft', '72.19');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (273, 'metal', "medium", '19.58');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (274, 'metal', 'hard', '27.34');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (275, 'plastic', 'soft', '70.37');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (276, 'plastic', "medium", '61.02');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (277, 'metal', 'hard', '55.7');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (278, 'metal', "medium", '29.34');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (279, 'wood', 'hard', '63.13');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (280, 'metal', "medium", '12.65');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (281, 'plastic', "medium", '3.54');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (282, 'plastic', 'soft', '11.51');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (283, 'composite', 'soft', '74.7');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (284, 'plastic', "medium", '24.34');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (285, 'composite', 'soft', '30');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (286, 'wood', "medium", '58.29');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (287, 'metal', 'soft', '27.62');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (288, 'composite', "medium", '44.91');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (289, 'plastic', 'soft', '40.8');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (290, 'composite', "medium", '57.24');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (291, 'metal', "medium", '32.43');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (292, 'wood', 'hard', '34.6');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (293, 'composite', "medium", '24.45');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (294, 'metal', 'soft', '24.78');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (295, 'wood', "medium", '36.71');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (296, 'composite', 'hard', '19.03');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (297, 'wood', "medium", '13.01');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (298, 'metal', 'hard', '58.25');
+INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES (299, 'composite', "medium", '57.92');
+
+
+-- #
+-- # TABLE STRUCTURE FOR: `Goggles`
+-- #
+
+-- DROP TABLE IF EXISTS `Goggles`;
+
+CREATE TABLE `Goggles` (
+  `productNo` bigint(15) unsigned NOT NULL,
+  `size` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `style` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `colour` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`productNo`),
+  CONSTRAINT `Goggles_ibfk_1` FOREIGN KEY (`productNo`) REFERENCES `Product` (`productNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (300, "large", "scuba", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (301, "small", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (302, "large", "scuba", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (303, "medium", "scuba", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (304, "xlarge", "scuba", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (305, "medium", "swedish", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (306, "small", "reflective", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (307, "medium", "swedish", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (308, "medium", "swedish", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (309, "medium", "reflective", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (310, "large", "scuba", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (311, "large", "scuba", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (312, "small", "scuba", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (313, "xlarge", "scuba", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (314, "large", "scuba", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (315, "large", "swedish", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (316, "small", "swedish", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (317, "large", "scuba", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (318, "small", "swedish", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (319, "xlarge", "reflective", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (320, "medium", "reflective", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (321, "small", "scuba", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (322, "large", "reflective", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (323, "medium", "scuba", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (324, "large", "swedish", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (325, "xlarge", "scuba", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (326, "large", "scuba", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (327, "small", "scuba", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (328, "large", "swedish", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (329, "large", "swedish", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (330, "large", "reflective", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (331, "small", "scuba", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (332, "xlarge", "swedish", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (333, "medium", "scuba", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (334, "xlarge", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (335, "medium", "reflective", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (336, "large", "swedish", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (337, "large", "swedish", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (338, "xlarge", "reflective", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (339, "small", "scuba", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (340, "xlarge", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (341, "large", "swedish", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (342, "medium", "reflective", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (343, "medium", "reflective", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (344, "large", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (345, "xlarge", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (346, "large", "swedish", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (347, "large", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (348, "medium", "reflective", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (349, "xlarge", "scuba", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (350, "small", "scuba", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (351, "xlarge", "swedish", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (352, "large", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (353, "xlarge", "swedish", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (354, "large", "scuba", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (355, "xlarge", "swedish", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (356, "medium", "swedish", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (357, "large", "swedish", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (358, "xlarge", "reflective", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (359, "small", "scuba", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (360, "xlarge", "scuba", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (361, "small", "reflective", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (362, "medium", "swedish", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (363, "small", "scuba", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (364, "xlarge", "scuba", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (365, "small", "scuba", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (366, "medium", "swedish", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (367, "medium", "swedish", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (368, "xlarge", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (369, "small", "swedish", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (370, "small", "swedish", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (371, "small", "scuba", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (372, "small", "swedish", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (373, "medium", "swedish", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (374, "xlarge", "reflective", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (375, "small", "swedish", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (376, "large", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (377, "small", "swedish", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (378, "large", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (379, "xlarge", "scuba", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (380, "small", "swedish", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (381, "small", "scuba", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (382, "medium", "scuba", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (383, "xlarge", "swedish", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (384, "xlarge", "scuba", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (385, "xlarge", "scuba", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (386, "small", "swedish", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (387, "xlarge", "reflective", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (388, "xlarge", "scuba", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (389, "xlarge", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (390, "medium", "reflective", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (391, "small", "scuba", "red");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (392, "small", "scuba", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (393, "large", "swedish", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (394, "small", "reflective", "blue");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (395, "small", "reflective", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (396, "large", "swedish", "purple");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (397, "medium", "reflective", "clear");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (398, "medium", "scuba", "green");
+INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES (399, "medium", "reflective", "purple");
+
+
+-- #
+-- # TABLE STRUCTURE FOR: Racquet
+-- #
+
+-- DROP TABLE IF EXISTS `Racquet`;
+
+CREATE TABLE `Racquet` (
+  `productNo` bigint(15) unsigned NOT NULL,
+  `rLength` float DEFAULT NULL,
+  `ageGroup` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `rWeight` float DEFAULT NULL,
+  PRIMARY KEY (`productNo`),
+  CONSTRAINT `Racquet_ibfk_1` FOREIGN KEY (`productNo`) REFERENCES `Product` (`productNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (400, '5.26', 'adult', '332.68');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (401, '24.7', 'youth', '355.85');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (402, '23.22', 'teen', '221.77');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (403, '9.9', 'adult', '239.38');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (404, '28.82', 'adult', '346.4');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (405, '23.14', 'youth', '285.54');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (406, '3.72', 'teen', '266.7');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (407, '20.73', 'youth', '411.11');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (408, '3.78', 'adult', '237.96');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (409, '24.09', 'teen', '228.51');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (410, '18.46', 'teen', '235.99');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (411, '3.7', 'teen', '224.48');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (412, '1.83', 'teen', '286.99');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (413, '6.39', 'adult', '428.96');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (414, '0.3', 'youth', '258.08');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (415, '6.72', 'youth', '421.79');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (416, '27.91', 'youth', '280.33');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (417, '10.55', 'teen', '427.97');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (418, '11.7', 'teen', '324.97');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (419, '25.17', 'teen', '348.86');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (420, '28.96', 'teen', '269.27');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (421, '4.55', 'youth', '268.57');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (422, '26.32', 'adult', '342.38');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (423, '16.27', 'teen', '358.12');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (424, '28.1', 'adult', '370.57');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (425, '3.5', 'adult', '221.56');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (426, '29.16', 'teen', '326.44');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (427, '27.03', 'youth', '331.3');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (428, '15.85', 'teen', '299.39');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (429, '13.28', 'youth', '320.24');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (430, '7.4', 'youth', '371.67');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (431, '20.96', 'adult', '447.86');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (432, '20.57', 'teen', '373.48');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (433, '6.25', 'youth', '455.21');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (434, '12.87', 'teen', '354.12');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (435, '3.8', 'adult', '346.65');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (436, '27.8', 'teen', '317.51');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (437, '28.7', 'teen', '290.88');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (438, '4.37', 'youth', '449.93');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (439, '9.17', 'teen', '386.76');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (440, '12.61', 'adult', '285.31');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (441, '8.76', 'youth', '256.07');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (442, '27.37', 'youth', '308.26');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (443, '1.84', 'adult', '345.24');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (444, '8.17', 'youth', '434.13');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (445, '24.78', 'youth', '385.79');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (446, '12.84', 'teen', '354.94');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (447, '22.17', 'youth', '227.71');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (449, '19.32', 'adult', '370.77');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (450, '9.21', 'teen', '401.64');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (451, '12.47', 'youth', '255.67');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (452, '28.31', 'adult', '395.13');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (453, '13.75', 'adult', '297.51');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (454, '11.44', 'teen', '290.05');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (455, '1', 'teen', '248.81');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (456, '21.69', 'teen', '356.02');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (457, '7.41', 'youth', '389.5');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (458, '2.09', 'teen', '415.58');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (459, '15.46', 'youth', '371.77');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (460, '12.23', 'teen', '445.24');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (461, '29.83', 'adult', '295.7');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (462, '28.2', 'adult', '425.76');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (463, '26.26', 'youth', '236.12');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (464, '28.08', 'youth', '226.58');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (465, '14.03', 'adult', '343.98');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (466, '14.44', 'adult', '261.58');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (467, '11.55', 'adult', '272.43');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (468, '18.94', 'teen', '364.23');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (469, '24.5', 'youth', '456.6');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (470, '20.24', 'adult', '391.15');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (471, '19.07', 'teen', '309.54');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (472, '27.03', 'adult', '406.03');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (473, '5.29', 'youth', '436.39');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (474, '21.69', 'youth', '419.44');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (475, '22.31', 'teen', '376.95');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (476, '17.61', 'youth', '223.72');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (477, '8.75', 'adult', '231.24');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (478, '1.63', 'adult', '293.7');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (479, '2.82', 'teen', '425.32');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (480, '27.76', 'youth', '263.06');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (481, '20.49', 'adult', '326.01');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (482, '23.13', 'teen', '430.69');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (483, '27.52', 'youth', '450.69');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (484, '17.42', 'youth', '401.14');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (485, '21.44', 'teen', '298.68');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (486, '27.3', 'teen', '435.35');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (487, '5.51', 'youth', '450.02');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (488, '17.92', 'youth', '324.26');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (489, '8.03', 'teen', '231.83');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (490, '7.82', 'teen', '316.47');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (491, '20.22', 'teen', '295.28');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (492, '9.28', 'adult', '273.37');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (493, '7.17', 'adult', '284.48');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (494, '15.74', 'adult', '234.31');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (495, '29.17', 'adult', '270.31');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (496, '2.04', 'adult', '354.07');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (497, '14.91', 'adult', '338.36');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (498, '23.67', 'teen', '226.35');
+INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES (499, '4.72', 'teen', '327.87');
+
+-- #
+-- # TABLE STRUCTURE FOR: `Item`
+-- #
+
+-- DROP TABLE IF EXISTS `Item`;
 
 CREATE TABLE `Item` (
   `itemID` int(15) unsigned NOT NULL AUTO_INCREMENT,
@@ -6213,567 +6981,1004 @@ CREATE TABLE `Item` (
   CONSTRAINT `Item_ibfk_2` FOREIGN KEY (`productNo`) REFERENCES `Product` (`productNo`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (1, 1, '1');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (2, 2, '2');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (3, 3, '3');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (4, 4, '4');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (5, 5, '5');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (6, 6, '6');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (7, 7, '7');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (8, 8, '8');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (9, 9, '9');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (10, 10, '10');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (11, 11, '11');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (12, 12, '12');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (13, 13, '13');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (14, 14, '14');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (15, 15, '15');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (16, 16, '16');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (17, 17, '17');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (18, 18, '18');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (19, 19, '19');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (20, 20, '20');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (21, 21, '21');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (22, 22, '22');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (23, 23, '23');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (24, 24, '24');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (25, 25, '25');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (26, 26, '26');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (27, 27, '27');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (28, 28, '28');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (29, 29, '29');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (30, 30, '30');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (31, 31, '31');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (32, 32, '32');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (33, 33, '33');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (34, 34, '34');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (35, 35, '35');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (36, 36, '36');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (37, 37, '37');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (38, 38, '38');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (39, 39, '39');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (40, 40, '40');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (41, 41, '41');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (42, 42, '42');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (43, 43, '43');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (44, 44, '44');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (45, 45, '45');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (46, 46, '46');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (47, 47, '47');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (48, 48, '48');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (49, 49, '49');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (50, 50, '50');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (51, 51, '51');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (52, 52, '52');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (53, 53, '53');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (54, 54, '54');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (55, 55, '55');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (56, 56, '56');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (57, 57, '57');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (58, 58, '58');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (59, 59, '59');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (60, 60, '60');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (61, 61, '61');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (62, 62, '62');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (63, 63, '63');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (64, 64, '64');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (65, 65, '65');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (66, 66, '66');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (67, 67, '67');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (68, 68, '68');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (69, 69, '69');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (70, 70, '70');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (71, 71, '71');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (72, 72, '72');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (73, 73, '73');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (74, 74, '74');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (75, 75, '75');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (76, 76, '76');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (77, 77, '77');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (78, 78, '78');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (79, 79, '79');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (80, 80, '80');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (81, 81, '81');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (82, 82, '82');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (83, 83, '83');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (84, 84, '84');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (85, 85, '85');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (86, 86, '86');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (87, 87, '87');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (88, 88, '88');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (89, 89, '89');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (90, 90, '90');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (91, 91, '91');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (92, 92, '92');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (93, 93, '93');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (94, 94, '94');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (95, 95, '95');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (96, 96, '96');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (97, 97, '97');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (98, 98, '98');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (99, 99, '99');
-INSERT INTO `Item` (`itemID`, `transactionID`, `productNo`) VALUES (100, 100, '100');
 
-#
-# TABLE STRUCTURE FOR: Club
-#
-
-DROP TABLE IF EXISTS `Club`;
-
-CREATE TABLE `Club` (
-  `productNo` bigint(15) unsigned NOT NULL,
-  `cLength` float NOT NULL,
-  `cType` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`productNo`),
-  CONSTRAINT `Club_ibfk_1` FOREIGN KEY (`productNo`) REFERENCES `Product` (`productNo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('1', '1.68', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('2', '12.32', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('3', '3.57', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('4', '7.16', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('5', '10.49', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('6', '1.97', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('7', '2.1', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('8', '11.02', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('9', '13.35', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('10', '7.57', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('11', '8.19', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('12', '11.1', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('13', '10.59', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('14', '5.13', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('15', '5.02', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('16', '1.95', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('17', '6.53', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('18', '9.59', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('19', '6.68', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('20', '10.16', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('21', '9.98', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('22', '11.7', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('23', '11.1', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('24', '9.22', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('25', '7.55', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('26', '2.65', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('27', '12.9', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('28', '3.76', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('29', '1.54', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('30', '9.39', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('31', '2.09', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('32', '4.74', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('33', '1.93', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('34', '2.46', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('35', '5.8', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('36', '8.06', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('37', '13.35', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('38', '10.79', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('39', '13.47', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('40', '11.25', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('41', '9.19', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('42', '3.1', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('43', '10.34', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('44', '11.61', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('45', '5', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('46', '14.48', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('47', '1.54', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('48', '14.72', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('49', '2.87', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('50', '3.71', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('51', '9.34', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('52', '6.81', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('53', '8.82', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('54', '4.38', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('55', '2.19', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('56', '4.25', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('57', '12.22', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('58', '8.85', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('59', '9.31', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('60', '8.31', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('61', '5.49', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('62', '1.05', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('63', '10.44', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('64', '2.23', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('65', '1.79', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('66', '10.79', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('67', '13.33', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('68', '14.04', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('69', '5.4', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('70', '14.7', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('71', '2.7', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('72', '9.04', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('73', '10.53', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('74', '4.93', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('75', '7.54', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('76', '11.09', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('77', '13.11', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('78', '2.84', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('79', '12.25', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('80', '12.66', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('81', '5.37', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('82', '2.1', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('83', '6.92', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('84', '4.1', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('85', '7.73', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('86', '12.87', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('87', '12.25', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('88', '4.01', ' hybrid');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('89', '12', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('90', '4.19', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('91', '12.24', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('92', '14.64', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('93', '12.67', ' putter');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('94', '13.5', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('95', '7.76', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('96', '2.59', ' wood');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('97', '10.74', ' iron');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('98', '8.3', 'driver');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('99', '6.34', ' wedge');
-INSERT INTO `Club` (`productNo`, `cLength`, `cType`) VALUES ('100', '4.73', ' putter');
-
-
-#
-# TABLE STRUCTURE FOR: CurlingBroom
-#
-
-DROP TABLE IF EXISTS `CurlingBroom`;
-
-CREATE TABLE `CurlingBroom` (
-  `productNo` bigint(15) unsigned NOT NULL,
-  `shaftMaterial` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `bristleHardness` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `shaftLength` float NOT NULL,
-  PRIMARY KEY (`productNo`),
-  CONSTRAINT `CurlingBroom_ibfk_1` FOREIGN KEY (`productNo`) REFERENCES `Product` (`productNo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('1', ' metal', ' soft', '58.88');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('2', ' wood', ' medium', '40.84');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('3', ' metal', 'hard', '1.16');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('4', ' wood', ' soft', '74.93');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('5', ' plastic', ' medium', '62.7');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('6', 'composite', 'hard', '7.45');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('7', 'composite', ' medium', '14.56');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('8', 'composite', 'hard', '55.48');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('9', ' plastic', 'hard', '45.47');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('10', ' wood', ' soft', '54.27');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('11', ' plastic', ' medium', '24.56');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('12', 'composite', 'hard', '30.88');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('13', ' wood', ' medium', '69.65');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('14', ' metal', ' soft', '74.68');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('15', ' plastic', ' medium', '33.82');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('16', ' metal', ' soft', '88.74');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('17', ' wood', ' soft', '59.2');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('18', ' metal', ' soft', '91.41');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('19', 'composite', ' medium', '47.57');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('20', ' metal', ' soft', '78.99');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('21', ' wood', ' soft', '36.67');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('22', ' metal', ' soft', '66.8');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('23', 'composite', 'hard', '98.15');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('24', ' metal', ' soft', '80.49');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('25', ' metal', ' medium', '67.18');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('26', ' wood', ' soft', '21.59');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('27', 'composite', 'hard', '40.69');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('28', ' wood', 'hard', '86.22');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('29', ' metal', ' soft', '55.97');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('30', ' metal', ' soft', '49.33');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('31', ' wood', 'hard', '75.95');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('32', ' wood', ' soft', '73.69');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('33', 'composite', ' medium', '96.55');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('34', ' wood', 'hard', '27.06');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('35', ' plastic', 'hard', '84.7');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('36', ' metal', ' soft', '95.49');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('37', 'composite', ' soft', '53.87');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('38', ' metal', 'hard', '66.97');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('39', ' plastic', 'hard', '48.54');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('40', ' wood', 'hard', '3.29');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('41', ' plastic', 'hard', '18.7');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('42', ' metal', ' medium', '1.3');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('43', ' wood', ' soft', '85.42');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('44', ' wood', ' soft', '11.87');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('45', 'composite', ' medium', '80.75');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('46', ' wood', ' soft', '74.15');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('47', ' wood', ' medium', '11.04');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('48', 'composite', 'hard', '57.92');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('49', ' wood', 'hard', '99.64');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('50', ' metal', ' soft', '56.81');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('51', ' metal', ' soft', '14.12');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('52', 'composite', ' soft', '35.83');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('53', 'composite', ' soft', '21.64');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('54', ' plastic', ' medium', '94.9');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('55', ' metal', ' soft', '31.42');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('56', ' wood', ' soft', '4.72');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('57', 'composite', ' medium', '79.26');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('58', ' wood', ' medium', '78.78');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('59', 'composite', ' medium', '50.76');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('60', ' plastic', ' medium', '31.55');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('61', ' metal', ' medium', '60.49');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('62', 'composite', ' soft', '30.93');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('63', ' metal', 'hard', '49.32');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('64', 'composite', ' medium', '98.96');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('65', ' wood', ' medium', '11.13');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('66', ' plastic', 'hard', '94.12');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('67', 'composite', 'hard', '16.39');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('68', ' metal', 'hard', '82.5');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('69', ' wood', ' medium', '86.9');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('70', 'composite', ' medium', '73.77');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('71', ' wood', 'hard', '86.08');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('72', ' wood', ' medium', '75.05');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('73', 'composite', ' soft', '80.41');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('74', 'composite', ' medium', '67.72');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('75', ' plastic', 'hard', '69.29');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('76', ' metal', ' soft', '11.36');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('77', ' plastic', 'hard', '41.98');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('78', ' metal', 'hard', '62.01');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('79', 'composite', 'hard', '57.63');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('80', ' wood', ' medium', '5.27');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('81', ' wood', ' soft', '85.21');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('82', 'composite', 'hard', '1.21');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('83', ' plastic', ' medium', '22.74');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('84', ' metal', ' medium', '42.62');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('85', 'composite', ' soft', '39.67');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('86', ' plastic', 'hard', '58.87');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('87', ' metal', 'hard', '14.07');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('88', ' plastic', ' medium', '39.83');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('89', ' metal', 'hard', '30.37');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('90', ' plastic', 'hard', '54.37');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('91', ' metal', ' soft', '55.61');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('92', ' metal', ' soft', '78.4');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('93', ' metal', ' soft', '85.52');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('94', 'composite', 'hard', '29.37');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('95', ' wood', ' medium', '47.23');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('96', ' metal', 'hard', '52.83');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('97', ' wood', ' medium', '56.35');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('98', ' plastic', ' soft', '67.84');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('99', 'composite', ' soft', '98.48');
-INSERT INTO `CurlingBroom` (`productNo`, `shaftMaterial`, `bristleHardness`, `shaftLength`) VALUES ('100', ' wood', ' soft', '94.67');
-
-#
-# TABLE STRUCTURE FOR: Goggles
-#
-
-DROP TABLE IF EXISTS `Goggles`;
-
-CREATE TABLE `Goggles` (
-  `productNo` bigint(15) unsigned NOT NULL,
-  `size` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `style` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `colour` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`productNo`),
-  CONSTRAINT `Goggles_ibfk_1` FOREIGN KEY (`productNo`) REFERENCES `Product` (`productNo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('1', ' small', 'scuba', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('2', 'large', ' reflective', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('3', ' xlarge', ' reflective', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('4', ' xsmall', ' reflective', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('5', 'large', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('6', ' medium', ' reflective', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('7', ' xlarge', ' swedish', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('8', ' xlarge', 'scuba', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('9', ' small', ' reflective', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('10', 'large', 'scuba', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('11', 'large', ' swedish', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('12', ' small', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('13', ' small', ' swedish', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('14', 'large', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('15', ' xlarge', ' reflective', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('16', ' xlarge', 'scuba', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('17', 'large', ' reflective', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('18', ' medium', ' swedish', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('19', ' small', ' swedish', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('20', ' medium', ' reflective', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('21', ' medium', ' swedish', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('22', 'large', ' reflective', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('23', ' xlarge', ' swedish', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('24', ' medium', ' swedish', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('25', ' small', 'scuba', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('26', ' medium', 'scuba', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('27', ' medium', ' swedish', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('28', ' xsmall', ' reflective', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('29', ' medium', ' swedish', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('30', ' medium', ' reflective', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('31', ' small', 'scuba', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('32', 'large', ' reflective', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('33', ' medium', 'scuba', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('34', 'large', 'scuba', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('35', ' small', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('36', 'large', ' reflective', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('37', ' xlarge', ' swedish', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('38', ' xlarge', 'scuba', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('39', ' medium', ' reflective', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('40', ' small', ' reflective', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('41', ' small', 'scuba', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('42', 'large', ' swedish', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('43', ' medium', 'scuba', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('44', 'large', ' reflective', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('45', 'large', ' swedish', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('46', ' xlarge', ' reflective', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('47', ' small', ' swedish', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('48', 'large', ' swedish', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('49', ' xlarge', 'scuba', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('50', 'large', 'scuba', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('51', ' medium', ' swedish', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('52', ' small', ' swedish', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('53', 'large', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('54', 'large', ' swedish', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('55', ' medium', 'scuba', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('56', ' xsmall', 'scuba', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('57', ' medium', ' reflective', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('58', 'large', ' reflective', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('59', ' xsmall', ' reflective', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('60', ' small', ' reflective', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('61', ' medium', 'scuba', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('62', ' xlarge', 'scuba', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('63', 'large', ' swedish', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('64', ' medium', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('65', 'large', 'scuba', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('66', ' medium', ' reflective', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('67', ' small', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('68', ' xlarge', ' swedish', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('69', ' small', ' reflective', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('70', ' small', ' swedish', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('71', ' medium', ' swedish', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('72', ' medium', ' swedish', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('73', ' medium', ' swedish', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('74', ' xlarge', 'scuba', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('75', ' medium', ' reflective', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('76', ' medium', 'scuba', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('77', ' medium', 'scuba', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('78', ' xsmall', ' reflective', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('79', ' xsmall', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('80', ' small', 'scuba', ' purple');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('81', ' small', ' reflective', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('82', ' xlarge', ' swedish', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('83', ' xlarge', ' swedish', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('84', ' small', 'scuba', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('85', ' xsmall', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('86', ' xlarge', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('87', ' small', ' swedish', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('88', ' xsmall', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('89', ' xsmall', ' swedish', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('90', ' xlarge', ' reflective', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('91', ' xlarge', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('92', ' xlarge', 'scuba', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('93', ' medium', 'scuba', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('94', ' medium', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('95', ' medium', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('96', ' small', ' swedish', ' green');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('97', ' medium', ' swedish', ' red');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('98', ' small', 'scuba', 'clear');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('99', ' xsmall', 'scuba', ' blue');
-INSERT INTO `Goggles` (`productNo`, `size`, `style`, `colour`) VALUES ('100', ' medium', ' swedish', ' red');
-
-#
-# TABLE STRUCTURE FOR: Racquet
-#
-
-DROP TABLE IF EXISTS `Racquet`;
-
-CREATE TABLE `Racquet` (
-  `productNo` bigint(15) unsigned NOT NULL,
-  `rLength` float NOT NULL,
-  `ageGroup` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `rWeight` float NOT NULL,
-  PRIMARY KEY (`productNo`),
-  CONSTRAINT `Racquet_ibfk_1` FOREIGN KEY (`productNo`) REFERENCES `Product` (`productNo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('1', '79.78', 'adult', '420.83');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('2', '27.4', ' teen', '116.18');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('3', '49.99', ' youth', '90.97');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('4', '68', ' youth', '356.83');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('5', '78.99', 'adult', '99.35');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('6', '34.83', ' teen', '67.52');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('7', '92.93', 'adult', '85');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('8', '41.09', ' teen', '152.89');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('9', '57.63', 'adult', '423.12');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('10', '80.22', 'adult', '282.3');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('11', '75.84', 'adult', '390.17');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('12', '11.69', ' youth', '76.53');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('13', '64.15', ' youth', '225.6');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('14', '6.03', ' youth', '443.76');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('15', '81.37', 'adult', '173.57');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('16', '91.65', ' youth', '388.55');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('17', '10.11', 'adult', '198.93');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('18', '60.34', ' teen', '217.35');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('19', '16.24', ' youth', '118.11');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('20', '23.24', ' youth', '358.73');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('21', '20.33', ' teen', '308.08');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('22', '75.66', 'adult', '171.02');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('23', '18.16', 'adult', '58.5');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('24', '61.41', ' youth', '301.16');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('25', '70.21', ' teen', '236.62');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('26', '73.52', ' youth', '120.39');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('27', '59.73', ' youth', '53.17');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('28', '93.5', ' teen', '134.32');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('29', '91.46', 'adult', '352.94');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('30', '9.91', ' teen', '302.77');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('31', '3.87', ' youth', '166.82');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('32', '34.86', 'adult', '219.89');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('33', '84.93', 'adult', '480.94');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('34', '32.69', ' teen', '115.2');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('35', '46.42', ' teen', '128.19');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('36', '64.9', ' teen', '175.53');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('37', '58.79', ' youth', '225.59');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('38', '33.36', 'adult', '97.81');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('39', '39.03', ' teen', '107.67');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('40', '73.53', 'adult', '115.06');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('41', '93.98', 'adult', '293.65');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('42', '3.19', ' youth', '212.15');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('43', '65.43', 'adult', '346');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('44', '13.43', ' teen', '176.43');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('45', '22.35', ' youth', '97.05');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('46', '38.45', 'adult', '354.11');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('47', '47.05', ' youth', '157.72');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('48', '43.92', 'adult', '134.08');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('49', '36.65', ' youth', '249.68');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('50', '14.34', ' youth', '486.23');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('51', '34.58', ' youth', '302.02');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('52', '21.47', ' youth', '250.17');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('53', '94.05', ' youth', '233.93');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('54', '69.16', ' teen', '293.69');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('55', '25.53', 'adult', '80.56');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('56', '63.32', 'adult', '149.92');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('57', '77.52', ' teen', '162.16');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('58', '43.27', 'adult', '243.15');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('59', '44.68', 'adult', '469.93');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('60', '39.78', ' youth', '458.48');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('61', '23.69', ' teen', '371.66');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('62', '55.27', 'adult', '297.95');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('63', '31.92', ' teen', '475.57');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('64', '60.86', 'adult', '145.03');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('65', '28.04', ' youth', '360.17');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('66', '38.81', 'adult', '134.99');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('67', '23.86', ' teen', '319.39');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('68', '94.81', 'adult', '492.66');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('69', '91.4', ' youth', '392.95');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('70', '79.18', ' teen', '209.87');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('71', '21.4', ' teen', '422.31');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('72', '62.12', 'adult', '344.65');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('73', '33.26', ' youth', '104.17');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('74', '54.68', ' teen', '190.2');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('75', '22.1', ' youth', '310.41');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('76', '33.49', ' youth', '278.44');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('77', '24.49', 'adult', '432.93');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('78', '90.74', 'adult', '362.05');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('79', '1.94', ' teen', '371.29');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('80', '19.8', 'adult', '59.96');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('81', '63.96', 'adult', '263.75');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('82', '72.47', ' youth', '396.62');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('83', '37.97', ' teen', '455.91');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('84', '84.74', ' teen', '465.7');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('85', '75.35', 'adult', '187.14');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('86', '24.6', ' youth', '178.85');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('87', '80.41', ' teen', '244.38');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('88', '96.37', 'adult', '467.78');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('89', '8.95', ' teen', '83.57');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('90', '6.55', ' teen', '288.01');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('91', '42.13', ' youth', '374.55');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('92', '39.06', 'adult', '209.32');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('93', '63.52', 'adult', '432.01');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('94', '88.96', 'adult', '68.03');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('95', '20.66', 'adult', '370.05');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('96', '91.91', ' youth', '53.45');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('97', '35.09', 'adult', '198.8');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('98', '22.05', 'adult', '366.77');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('99', '68.95', ' youth', '499.84');
-INSERT INTO `Racquet` (`productNo`, `rLength`, `ageGroup`, `rWeight`) VALUES ('100', '27.63', 'adult', '290.99');
+INSERT INTO `Item` VALUES ('1','1478','370'),
+('2','208','271'),
+('3','975','403'),
+('4','500','335'),
+('5','426','108'),
+('6','67','131'),
+('7','1732','438'),
+('8','661','495'),
+('9','1691','113'),
+('10','862','150'),
+('11','1022','175'),
+('12','456','498'),
+('13','1698','487'),
+('14','320','462'),
+('15','1229','354'),
+('16','956','359'),
+('17','158','471'),
+('18','1700','316'),
+('19','129','394'),
+('20','1166','427'),
+('21','376','482'),
+('22','414','252'),
+('23','374','179'),
+('24','659','127'),
+('25','1524','359'),
+('26','1615','425'),
+('27','1580','262'),
+('28','622','113'),
+('29','1807','113'),
+('30','1468','487'),
+('31','1814','273'),
+('32','1245','127'),
+('33','14','478'),
+('34','356','177'),
+('35','662','185'),
+('36','1837','482'),
+('37','1134','476'),
+('38','1177','479'),
+('39','634','299'),
+('40','1571','132'),
+('41','1199','400'),
+('42','544','489'),
+('43','551','445'),
+('44','1154','444'),
+('45','1428','187'),
+('46','421','387'),
+('47','1589','110'),
+('48','1800','263'),
+('49','153','187'),
+('50','834','303'),
+('51','1438','390'),
+('52','420','306'),
+('53','1504','491'),
+('54','484','408'),
+('55','869','282'),
+('56','910','214'),
+('57','1772','462'),
+('58','490','130'),
+('59','640','135'),
+('60','878','140'),
+('61','306','265'),
+('62','247','325'),
+('63','1935','372'),
+('64','23','215'),
+('65','1784','425'),
+('66','138','177'),
+('67','406','102'),
+('68','1571','370'),
+('69','154','130'),
+('70','1484','446'),
+('71','1760','200'),
+('72','1094','411'),
+('73','1659','468'),
+('74','1132','259'),
+('75','465','145'),
+('76','1865','295'),
+('77','303','312'),
+('78','1110','112'),
+('79','241','224'),
+('80','371','154'),
+('81','346','453'),
+('82','1585','344'),
+('83','1456','440'),
+('84','93','440'),
+('85','1305','214'),
+('86','1035','311'),
+('87','835','222'),
+('88','747','322'),
+('89','162','316'),
+('90','362','110'),
+('91','1908','189'),
+('92','811','213'),
+('93','447','353'),
+('94','154','105'),
+('95','117','420'),
+('96','1087','170'),
+('97','10','367'),
+('98','1927','439'),
+('99','375','442'),
+('100','306','172'),
+('101','129','449'),
+('102','1177','245'),
+('103','1456','147'),
+('104','1937','356'),
+('105','1967','229'),
+('106','351','150'),
+('107','1584','225'),
+('108','655','496'),
+('109','1156','482'),
+('110','1382','173'),
+('111','684','430'),
+('112','818','241'),
+('113','814','464'),
+('114','1553','171'),
+('115','1406','460'),
+('116','477','344'),
+('117','1971','270'),
+('118','600','403'),
+('119','15','268'),
+('120','438','128'),
+('121','172','340'),
+('122','586','401'),
+('123','1798','139'),
+('124','1932','254'),
+('125','1412','416'),
+('126','920','149'),
+('127','1650','465'),
+('128','388','198'),
+('129','1897','376'),
+('130','908','478'),
+('131','1958','163'),
+('132','1429','264'),
+('133','1773','395'),
+('134','1776','140'),
+('135','1366','102'),
+('136','506','293'),
+('137','982','250'),
+('138','11','426'),
+('139','887','368'),
+('140','1399','338'),
+('141','1073','241'),
+('142','482','375'),
+('143','1044','481'),
+('144','1471','451'),
+('145','1424','196'),
+('146','530','385'),
+('147','1671','292'),
+('148','577','356'),
+('149','1085','122'),
+('150','1472','460'),
+('151','906','362'),
+('152','501','458'),
+('153','902','146'),
+('154','90','400'),
+('155','1945','375'),
+('156','1847','157'),
+('157','1137','297'),
+('158','68','100'),
+('159','1171','285'),
+('160','159','178'),
+('161','1945','359'),
+('162','1332','299'),
+('163','223','433'),
+('164','1892','347'),
+('165','1002','456'),
+('166','1753','426'),
+('167','369','270'),
+('168','1515','120'),
+('169','1749','343'),
+('170','661','433'),
+('171','513','475'),
+('172','98','150'),
+('173','227','237'),
+('174','138','158'),
+('175','838','262'),
+('176','338','107'),
+('177','860','122'),
+('178','1655','458'),
+('179','385','124'),
+('180','1529','397'),
+('181','119','215'),
+('182','539','495'),
+('183','192','299'),
+('184','1540','123'),
+('185','1779','270'),
+('186','320','102'),
+('187','1456','436'),
+('188','1410','451'),
+('189','133','282'),
+('190','1819','447'),
+('191','150','129'),
+('192','1057','204'),
+('193','1717','281'),
+('194','1316','487'),
+('195','488','452'),
+('196','486','289'),
+('197','1027','120'),
+('198','392','433'),
+('199','927','375'),
+('200','1545','231'),
+('201','89','192'),
+('202','131','134'),
+('203','1490','241'),
+('204','1398','493'),
+('205','145','378'),
+('206','75','421'),
+('207','696','185'),
+('208','894','490'),
+('209','801','438'),
+('210','618','405'),
+('211','891','300'),
+('212','1281','136'),
+('213','1581','255'),
+('214','15','311'),
+('215','1512','413'),
+('216','1616','198'),
+('217','240','179'),
+('218','108','236'),
+('219','925','469'),
+('220','677','130'),
+('221','1751','238'),
+('222','1712','117'),
+('223','507','241'),
+('224','1395','194'),
+('225','1469','281'),
+('226','333','414'),
+('227','236','204'),
+('228','32','219'),
+('229','943','220'),
+('230','210','106'),
+('231','403','409'),
+('232','1991','312'),
+('233','1499','177'),
+('234','60','478'),
+('235','1780','266'),
+('236','222','323'),
+('237','1219','469'),
+('238','935','385'),
+('239','1465','175'),
+('240','1419','250'),
+('241','1005','354'),
+('242','832','268'),
+('243','954','374'),
+('244','779','411'),
+('245','136','183'),
+('246','1133','417'),
+('247','1228','163'),
+('248','184','463'),
+('249','689','481'),
+('250','1098','281'),
+('251','736','218'),
+('252','734','212'),
+('253','1366','217'),
+('254','1701','437'),
+('255','638','369'),
+('256','1574','142'),
+('257','1971','472'),
+('258','1148','475'),
+('259','233','490'),
+('260','1317','363'),
+('261','525','312'),
+('262','737','295'),
+('263','1624','337'),
+('264','558','251'),
+('265','1279','385'),
+('266','1247','179'),
+('267','1158','333'),
+('268','317','491'),
+('269','1723','113'),
+('270','1782','204'),
+('271','1024','343'),
+('272','1672','107'),
+('273','58','274'),
+('274','273','498'),
+('275','1971','321'),
+('276','1077','394'),
+('277','700','452'),
+('278','1164','107'),
+('279','1357','311'),
+('280','171','281'),
+('281','1225','310'),
+('282','690','239'),
+('283','493','224'),
+('284','1435','194'),
+('285','795','104'),
+('286','1791','452'),
+('287','916','108'),
+('288','821','227'),
+('289','242','143'),
+('290','1116','320'),
+('291','1535','129'),
+('292','1732','372'),
+('293','761','499'),
+('294','714','139'),
+('295','539','266'),
+('296','131','157'),
+('297','383','315'),
+('298','230','407'),
+('299','390','422'),
+('300','1849','115'),
+('301','1901','186'),
+('302','1034','311'),
+('303','1417','179'),
+('304','1680','156'),
+('305','1059','193'),
+('306','408','308'),
+('307','541','449'),
+('308','1300','133'),
+('309','1150','472'),
+('310','133','434'),
+('311','1618','303'),
+('312','1759','254'),
+('313','1601','365'),
+('314','19','358'),
+('315','1289','258'),
+('316','716','240'),
+('317','1142','294'),
+('318','1771','113'),
+('319','320','465'),
+('320','1928','192'),
+('321','1255','370'),
+('322','708','353'),
+('323','1037','118'),
+('324','1053','173'),
+('325','1917','335'),
+('326','496','174'),
+('327','1134','270'),
+('328','342','144'),
+('329','1366','273'),
+('330','1692','442'),
+('331','901','400'),
+('332','532','177'),
+('333','899','320'),
+('334','1804','394'),
+('335','1357','148'),
+('336','61','365'),
+('337','1984','123'),
+('338','603','181'),
+('339','1303','425'),
+('340','1035','338'),
+('341','1446','134'),
+('342','958','335'),
+('343','1528','320'),
+('344','93','451'),
+('345','794','144'),
+('346','696','402'),
+('347','755','100'),
+('348','49','316'),
+('349','1180','355'),
+('350','1358','302'),
+('351','434','474'),
+('352','1524','124'),
+('353','1226','314'),
+('354','881','125'),
+('355','1223','333'),
+('356','450','429'),
+('357','704','345'),
+('358','1518','402'),
+('359','1575','335'),
+('360','711','176'),
+('361','277','475'),
+('362','1265','227'),
+('363','1365','351'),
+('364','1885','233'),
+('365','1842','310'),
+('366','1004','365'),
+('367','1646','157'),
+('368','849','315'),
+('369','705','144'),
+('370','1243','471'),
+('371','56','310'),
+('372','486','150'),
+('373','966','227'),
+('374','330','497'),
+('375','1581','154'),
+('376','1675','415'),
+('377','1744','293'),
+('378','286','343'),
+('379','1767','291'),
+('380','1058','196'),
+('381','942','195'),
+('382','528','370'),
+('383','1969','256'),
+('384','230','400'),
+('385','109','224'),
+('386','655','367'),
+('387','472','145'),
+('388','338','213'),
+('389','90','202'),
+('390','744','312'),
+('391','1341','321'),
+('392','584','340'),
+('393','1682','472'),
+('394','1363','346'),
+('395','1756','242'),
+('396','528','231'),
+('397','1128','244'),
+('398','105','359'),
+('399','378','266'),
+('400','957','308'),
+('401','1017','365'),
+('402','1524','203'),
+('403','1749','127'),
+('404','640','356'),
+('405','542','439'),
+('406','1684','134'),
+('407','1788','331'),
+('408','1734','245'),
+('409','1272','109'),
+('410','1737','111'),
+('411','761','444'),
+('412','1071','453'),
+('413','1204','217'),
+('414','1991','202'),
+('415','915','157'),
+('416','1365','349'),
+('417','448','120'),
+('418','157','428'),
+('419','1409','411'),
+('420','1136','148'),
+('421','388','154'),
+('422','235','117'),
+('423','544','324'),
+('424','1383','225'),
+('425','667','452'),
+('426','1989','276'),
+('427','220','165'),
+('428','1007','274'),
+('429','1355','165'),
+('430','924','486'),
+('431','1181','146'),
+('432','247','414'),
+('433','1792','238'),
+('434','434','410'),
+('435','1602','214'),
+('436','261','443'),
+('437','357','281'),
+('438','1721','136'),
+('439','1492','112'),
+('440','207','294'),
+('441','840','481'),
+('442','909','333'),
+('443','1271','449'),
+('444','73','384'),
+('445','1626','424'),
+('446','304','477'),
+('447','1156','109'),
+('448','109','375'),
+('449','764','271'),
+('450','1341','138'),
+('451','137','324'),
+('452','36','202'),
+('453','903','315'),
+('454','1266','311'),
+('455','1782','372'),
+('456','858','215'),
+('457','1586','157'),
+('458','832','440'),
+('459','591','484'),
+('460','164','255'),
+('461','695','443'),
+('462','52','340'),
+('463','1336','132'),
+('464','1213','130'),
+('465','681','113'),
+('466','814','112'),
+('467','275','293'),
+('468','1744','281'),
+('469','1009','272'),
+('470','1218','233'),
+('471','233','365'),
+('472','1133','100'),
+('473','1974','329'),
+('474','939','373'),
+('475','147','118'),
+('476','874','287'),
+('477','1428','111'),
+('478','1272','275'),
+('479','1985','473'),
+('480','822','429'),
+('481','579','123'),
+('482','1888','441'),
+('483','1121','142'),
+('484','1092','113'),
+('485','1875','233'),
+('486','739','222'),
+('487','1087','260'),
+('488','1447','300'),
+('489','1637','269'),
+('490','1825','316'),
+('491','810','257'),
+('492','1595','127'),
+('493','1182','423'),
+('494','600','132'),
+('495','1926','257'),
+('496','1010','405'),
+('497','434','116'),
+('498','1337','450'),
+('499','1940','186'),
+('500','909','237'),
+('501','2','483'),
+('502','1664','135'),
+('503','934','254'),
+('504','1062','140'),
+('505','723','174'),
+('506','771','103'),
+('507','1632','190'),
+('508','826','348'),
+('509','579','399'),
+('510','568','138'),
+('511','1470','394'),
+('512','228','385'),
+('513','765','293'),
+('514','1334','316'),
+('515','1943','191'),
+('516','217','327'),
+('517','179','268'),
+('518','1758','200'),
+('519','1984','252'),
+('520','893','129'),
+('521','1882','302'),
+('522','1403','133'),
+('523','480','467'),
+('524','874','165'),
+('525','102','335'),
+('526','1735','207'),
+('527','4','241'),
+('528','921','491'),
+('529','971','494'),
+('530','513','367'),
+('531','146','166'),
+('532','463','286'),
+('533','29','358'),
+('534','956','435'),
+('535','1804','350'),
+('536','600','328'),
+('537','1273','435'),
+('538','307','234'),
+('539','372','281'),
+('540','480','211'),
+('541','1687','427'),
+('542','387','199'),
+('543','412','202'),
+('544','1554','467'),
+('545','1361','281'),
+('546','668','305'),
+('547','826','199'),
+('548','1676','246'),
+('549','1994','439'),
+('550','1639','292'),
+('551','736','466'),
+('552','815','224'),
+('553','280','369'),
+('554','320','204'),
+('555','1645','465'),
+('556','821','304'),
+('557','1486','369'),
+('558','1394','269'),
+('559','950','145'),
+('560','1695','110'),
+('561','1780','480'),
+('562','1877','280'),
+('563','1543','138'),
+('564','1539','173'),
+('565','1323','452'),
+('566','1676','122'),
+('567','203','439'),
+('568','767','250'),
+('569','1475','282'),
+('570','1131','337'),
+('571','325','226'),
+('572','1251','442'),
+('573','1321','178'),
+('574','186','330'),
+('575','1394','120'),
+('576','1987','269'),
+('577','760','194'),
+('578','1560','373'),
+('579','536','293'),
+('580','862','264'),
+('581','1900','105'),
+('582','477','133'),
+('583','753','468'),
+('584','322','218'),
+('585','238','394'),
+('586','1499','104'),
+('587','1581','133'),
+('588','1778','400'),
+('589','1993','428'),
+('590','947','212'),
+('591','1356','440'),
+('592','889','208'),
+('593','519','104'),
+('594','1789','245'),
+('595','845','135'),
+('596','359','120'),
+('597','639','159'),
+('598','1123','448'),
+('599','495','124'),
+('600','1562','215'),
+('601','1008','441'),
+('602','1854','135'),
+('603','1994','143'),
+('604','180','210'),
+('605','188','478'),
+('606','1271','126'),
+('607','1215','461'),
+('608','736','171'),
+('609','205','181'),
+('610','379','369'),
+('611','931','200'),
+('612','1095','180'),
+('613','1507','458'),
+('614','345','207'),
+('615','624','191'),
+('616','1917','413'),
+('617','621','412'),
+('618','1399','137'),
+('619','1593','458'),
+('620','1194','196'),
+('621','961','367'),
+('622','1719','461'),
+('623','147','322'),
+('624','1411','342'),
+('625','818','201'),
+('626','1776','221'),
+('627','992','168'),
+('628','423','332'),
+('629','481','455'),
+('630','6','175'),
+('631','1658','352'),
+('632','694','499'),
+('633','1347','344'),
+('634','578','130'),
+('635','1517','335'),
+('636','1364','191'),
+('637','1510','212'),
+('638','1934','400'),
+('639','1621','377'),
+('640','1697','281'),
+('641','613','316'),
+('642','1364','422'),
+('643','487','138'),
+('644','1027','125'),
+('645','1982','469'),
+('646','748','344'),
+('647','1961','168'),
+('648','1051','330'),
+('649','928','224'),
+('650','1333','134'),
+('651','1008','135'),
+('652','1276','497'),
+('653','1785','374'),
+('654','1056','187'),
+('655','534','401'),
+('656','1586','421'),
+('657','1567','191'),
+('658','840','483'),
+('659','1443','229'),
+('660','1161','399'),
+('661','833','263'),
+('662','1870','155'),
+('663','493','197'),
+('664','174','166'),
+('665','672','345'),
+('666','1979','197'),
+('667','1389','237'),
+('668','1328','464'),
+('669','1756','353'),
+('670','421','153'),
+('671','826','387'),
+('672','1603','318'),
+('673','312','382'),
+('674','1062','422'),
+('675','1508','211'),
+('676','956','407'),
+('677','1790','445'),
+('678','1891','267'),
+('679','798','369'),
+('680','1972','458'),
+('681','1882','467'),
+('682','1670','119'),
+('683','724','351'),
+('684','1068','400'),
+('685','1672','424'),
+('686','199','217'),
+('687','681','178'),
+('688','1119','387'),
+('689','566','385'),
+('690','1121','227'),
+('691','1119','277'),
+('692','608','210'),
+('693','1656','354'),
+('694','506','264'),
+('695','224','257'),
+('696','664','369'),
+('697','99','203'),
+('698','1881','189'),
+('699','1960','222'),
+('700','990','449'),
+('701','1024','166'),
+('702','1544','277'),
+('703','205','333'),
+('704','1174','396'),
+('705','928','385'),
+('706','1868','151'),
+('707','663','364'),
+('708','463','285'),
+('709','1499','342'),
+('710','985','305'),
+('711','1677','352'),
+('712','1109','212'),
+('713','154','288'),
+('714','1725','369'),
+('715','112','393'),
+('716','614','353'),
+('717','317','281'),
+('718','663','110'),
+('719','518','422'),
+('720','724','360'),
+('721','1747','357'),
+('722','594','483'),
+('723','1421','113'),
+('724','326','153'),
+('725','1277','105'),
+('726','1908','342'),
+('727','1732','115'),
+('728','1526','252'),
+('729','1180','168'),
+('730','710','382'),
+('731','1374','119'),
+('732','356','223'),
+('733','1017','433'),
+('734','532','241'),
+('735','1156','474'),
+('736','1117','232'),
+('737','1936','334'),
+('738','713','137'),
+('739','2','380'),
+('740','869','218'),
+('741','802','155'),
+('742','1381','209'),
+('743','1545','374'),
+('744','1140','210'),
+('745','1571','375'),
+('746','1471','202'),
+('747','1259','368'),
+('748','79','100'),
+('749','1121','472'),
+('750','1763','178'),
+('751','1445','359'),
+('752','550','298'),
+('753','516','148'),
+('754','1424','164'),
+('755','898','482'),
+('756','484','324'),
+('757','979','394'),
+('758','1866','175'),
+('759','1125','304'),
+('760','369','153'),
+('761','1488','197'),
+('762','1177','496'),
+('763','1678','375'),
+('764','334','227'),
+('765','1446','419'),
+('766','1971','206'),
+('767','707','385'),
+('768','474','328'),
+('769','643','399'),
+('770','930','273'),
+('771','1325','206'),
+('772','1471','300'),
+('773','725','132'),
+('774','911','436'),
+('775','1018','211'),
+('776','1358','353'),
+('777','1071','370'),
+('778','1626','141'),
+('779','1614','376'),
+('780','1560','408'),
+('781','1685','256'),
+('782','1205','267'),
+('783','1992','236'),
+('784','938','460'),
+('785','18','319'),
+('786','26','136'),
+('787','271','311'),
+('788','1394','132'),
+('789','1265','173'),
+('790','285','352'),
+('791','1048','369'),
+('792','326','224'),
+('793','1399','346'),
+('794','1106','139'),
+('795','70','442'),
+('796','304','414'),
+('797','684','135'),
+('798','1088','127'),
+('799','101','450'),
+('800','697','229'),
+('801','473','499'),
+('802','1331','162'),
+('803','669','177'),
+('804','950','346'),
+('805','71','256'),
+('806','1075','312'),
+('807','131','180'),
+('808','1201','276'),
+('809','1249','205'),
+('810','1228','464'),
+('811','1115','137'),
+('812','1883','428'),
+('813','1203','209'),
+('814','438','280'),
+('815','609','426'),
+('816','1355','141'),
+('817','1084','131'),
+('818','1230','455'),
+('819','1336','228'),
+('820','634','354'),
+('821','361','214'),
+('822','1846','159'),
+('823','1165','491'),
+('824','612','192'),
+('825','811','425'),
+('826','1365','238'),
+('827','1432','375'),
+('828','956','106'),
+('829','594','351'),
+('830','1154','411'),
+('831','751','456'),
+('832','465','327'),
+('833','836','496'),
+('834','1157','226'),
+('835','1418','171'),
+('836','339','491'),
+('837','310','440'),
+('838','1996','368'),
+('839','558','366'),
+('840','602','443'),
+('841','1502','170'),
+('842','1119','323'),
+('843','7','247'),
+('844','224','252'),
+('845','760','197'),
+('846','570','340'),
+('847','816','177'),
+('848','1612','401'),
+('849','1248','164'),
+('850','906','168'),
+('851','1812','194'),
+('852','402','240'),
+('853','1464','464'),
+('854','1331','239'),
+('855','585','290'),
+('856','1988','111'),
+('857','1377','456'),
+('858','734','309'),
+('859','497','222'),
+('860','149','380'),
+('861','1450','214'),
+('862','1398','150'),
+('863','94','471'),
+('864','1863','253'),
+('865','72','242'),
+('866','658','438'),
+('867','1545','274'),
+('868','190','180'),
+('869','1545','286'),
+('870','1913','106'),
+('871','1503','224'),
+('872','665','201'),
+('873','1610','274'),
+('874','491','265'),
+('875','200','306'),
+('876','180','169'),
+('877','853','352'),
+('878','108','196'),
+('879','189','264'),
+('880','83','385'),
+('881','99','487'),
+('882','1773','465'),
+('883','1769','380'),
+('884','1178','213'),
+('885','1856','186'),
+('886','1366','209'),
+('887','1393','411'),
+('888','1387','433'),
+('889','1104','345'),
+('890','1040','487'),
+('891','1325','231'),
+('892','1168','104'),
+('893','1566','343'),
+('894','963','408'),
+('895','1013','440'),
+('896','1005','334'),
+('897','1595','468'),
+('898','1947','275'),
+('899','58','462'),
+('900','1318','282'),
+('901','325','433'),
+('902','1003','400'),
+('903','1000','219'),
+('904','1609','128'),
+('905','876','200'),
+('906','942','133'),
+('907','1791','312'),
+('908','1250','251'),
+('909','1333','378'),
+('910','297','264'),
+('911','1888','210'),
+('912','376','342'),
+('913','856','326'),
+('914','1045','477'),
+('915','987','298'),
+('916','1805','363'),
+('917','647','389'),
+('918','837','382'),
+('919','113','331'),
+('920','1243','105'),
+('921','1663','161'),
+('922','1538','202'),
+('923','402','186'),
+('924','1865','214'),
+('925','121','150'),
+('926','703','103'),
+('927','945','403'),
+('928','1319','481'),
+('929','881','299'),
+('930','976','276'),
+('931','377','460'),
+('932','1162','165'),
+('933','431','330'),
+('934','280','224'),
+('935','148','499'),
+('936','193','259'),
+('937','838','393'),
+('938','1905','407'),
+('939','17','267'),
+('940','672','413'),
+('941','705','313'),
+('942','184','309'),
+('943','1897','476'),
+('944','918','259'),
+('945','153','372'),
+('946','685','209'),
+('947','1230','259'),
+('948','1639','360'),
+('949','944','408'),
+('950','530','274'),
+('951','441','166'),
+('952','545','196'),
+('953','434','377'),
+('954','296','230'),
+('955','1393','177'),
+('956','921','140'),
+('957','1322','139'),
+('958','388','458'),
+('959','1043','364'),
+('960','836','332'),
+('961','1433','150'),
+('962','1126','110'),
+('963','868','479'),
+('964','1313','497'),
+('965','597','484'),
+('966','111','291'),
+('967','1757','497'),
+('968','1492','338'),
+('969','1751','397'),
+('970','1215','355'),
+('971','255','285'),
+('972','1197','454'),
+('973','67','143'),
+('974','595','261'),
+('975','379','382'),
+('976','446','410'),
+('977','1033','270'),
+('978','134','404'),
+('979','899','461'),
+('980','1642','122'),
+('981','1489','410'),
+('982','1298','239'),
+('983','1769','492'),
+('984','280','341'),
+('985','350','383'),
+('986','324','152'),
+('987','1877','481'),
+('988','742','102'),
+('989','1148','414'),
+('990','97','113'),
+('991','568','396'),
+('992','601','273'),
+('993','1618','209'),
+('994','824','432'),
+('995','385','273'),
+('996','369','267'),
+('997','457','331'),
+('998','1503','130'),
+('999','508','298'),
+('1000','1502','374'); 
