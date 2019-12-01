@@ -28,7 +28,7 @@ const {
   searchCustomersPage,
   searchCustomers
 } = require("./routes/customers_master");
-  
+
 // Transactions
 const {
   transactionHome,
@@ -43,9 +43,6 @@ const {
 } = require("./routes/transactions_master");
 
 //Products
-<<<<<<< HEAD
-const { productHome, allProducts } = require("./routes/products_master");
-=======
 const {
   productHome,
   allProducts,
@@ -56,7 +53,6 @@ const {
   viewCountRentable,
   viewSpecificGoggles
 } = require("./routes/products_master");
->>>>>>> 79a8853c46ee63b23fa44603c323d5d8bb5a281b
 
 //MY SQL CONNECTION
 const db = mysql.createConnection({
@@ -110,34 +106,26 @@ app.post("/editCustomer", editCustomer);
 app.get("/deleteCustomer", deleteCustomerPage);
 app.delete("/deleteCustomer", deleteCustomer);
 
-
-
 // customer routes
-app.get('/customers', customerHome); 
-app.get('/addCustomer', addCustomerPage); 
-app.get('/editCustomer', editCustomerPage); 
-app.post('/addCustomer', addCustomer); 
-app.post('/editCustomer', editCustomer); 
-app.get('/deleteCustomers', deleteCustomerPage);
-app.post('/deleteCustomers', deleteCustomer); 
-app.get('/searchCustomers', searchCustomersPage);
-app.post('/searchCustomers', searchCustomers);   
+app.get("/customers", customerHome);
+app.get("/addCustomer", addCustomerPage);
+app.get("/editCustomer", editCustomerPage);
+app.post("/addCustomer", addCustomer);
+app.post("/editCustomer", editCustomer);
+app.get("/deleteCustomers", deleteCustomerPage);
+app.post("/deleteCustomers", deleteCustomer);
+app.get("/searchCustomers", searchCustomersPage);
+app.post("/searchCustomers", searchCustomers);
 app.get("/products", productHome);
 app.get("/products/allProducts", allProducts);
-<<<<<<< HEAD
 app.get("/login", getLoginPage); //login page
 app.post("/login", loginAuth); //login page
-=======
 app.get("/products/viewClubs", viewClubs);
 app.get("/products/viewCurlingBrooms", viewCurlingBrooms);
 app.get("/products/viewClubs", viewGoggles);
 app.get("/products/viewClubs", viewRacquets);
 app.get("/products/viewCountRentable", viewCountRentable);
 app.get("/products/viewSpecificGoggles", viewSpecificGoggles);
-
-
-
->>>>>>> 79a8853c46ee63b23fa44603c323d5d8bb5a281b
 
 // app.get("/add", addPlayerPage); //comment missing
 // app.get("/edit/:id", editPlayerPage); //comment missing
