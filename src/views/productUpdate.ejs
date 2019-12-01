@@ -1,0 +1,32 @@
+<% include partials/header.ejs %>
+<h2>Update all Products for a Sport</h2>
+<% if (message != '') { %> <% if (message == "Success!") { %>
+<p class="text-center text-success">
+  <%= message %>
+</p>
+<% } else {%>
+<p class="text-center text-danger"><%= message %></p>
+<% } }%>
+<form method="post" enctype="multipart/form-data">
+  <br />
+
+  <label for="sName">Sport: </label>
+  <select id="sName" name="sName" required>
+    <option value="badminton">Badminton</option>
+    <option value="curling">Curling</option>
+    <option value="swimming">Swimming</option>
+    <option value="pingpong">Ping Pong</option>
+    <option value="squash">Squash</option>
+    <option value="golf">Golf</option>
+    <option value="tennis">Tennis</option>
+  </select>
+
+  <label for="purchasable"
+    >Sell All:
+    <input type="checkbox" id="purchasable" name="purchasable" />
+  </label>
+
+  <input type="submit" name="submit" value="Submit" />
+</form>
+
+<a href="/products">Back to Products</a>

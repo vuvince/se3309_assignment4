@@ -62,14 +62,16 @@ const {
   viewGoggles,
   viewRacquets,
   viewCountRentable,
-  viewSpecificGoggles
+  viewSpecificGoggles,
+  productUpdatePage,
+  productUpdate
 } = require("./routes/products_master");
 
 //MY SQL CONNECTION
 const db = mysql.createConnection({
   host: "localhost", //comment missing
   user: "root", //comment missing
-  password: "root", //comment missing
+  password: "password", //comment missing
   // database: "CountryClub"
   database: "CountryClub"
 }); //comment missing
@@ -107,7 +109,7 @@ app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
 app.get("/transactions/customerGrandTotal", viewTransTotalPage);
 app.get("/transactions/transactionsOnDate", amountOnDatePage);
-app.post("/transactions/transactionsOnDate", amountOnDate); 
+app.post("/transactions/transactionsOnDate", amountOnDate);
 
 // customer routes
 app.get("/customers", customerHome);
@@ -126,6 +128,7 @@ app.post("/login", loginAuth); //login page
 
 //Product routes
 app.get("/products/viewClubs", viewClubs);
+app.get("/products/all", allProducts);
 app.get("/products/viewCurlingBrooms", viewCurlingBrooms);
 app.get("/products/viewGoggles", viewGoggles);
 app.get("/products/viewRacquets", viewRacquets);
@@ -133,6 +136,8 @@ app.get("/products/viewCountRentable", viewCountRentable);
 app.get("/products/viewSpecificGoggles", viewSpecificGoggles);
 app.get("/products/totalSold", totalSoldPage);
 app.post("/products/totalSold", totalSold);
+app.get("/products/update", productUpdatePage);
+app.post("/products/update", productUpdate);
 
 // Employee routes
 app.get("/employees", employeeHome);

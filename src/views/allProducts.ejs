@@ -1,51 +1,42 @@
-
-
-<style>
-    .tableData{
-        color:white;
-    }
-
-</style> 
-
-<!-- View list of all equipment-->
+<% include partials/header.ejs %>
 <div class="table-wrapper">
-  <h2 class="tableData">View All Products</h2>
-  <!-- Adds titles to table-->
   <% if (products.length > 0) {%>
+<style>
+  .tableData{
+  color:black;
+}
+  </style>
+<a href="/products">Back to Products</a>
+  <!-- View training products-->
     <body>
     <table class="table table-hovered">
       <thead class="thead-dark">
+        <!-- Display columns for product-->
       <tr>
-        <th scope="col">Product Number</th>
-        <th scope="col">Rentable</th>
-        <th scope="col">Purchaseable</th>
-        <th scope="col">Price</th>
-        <th scope="col">Brand</th>
-        <th scope="col">Sport</th>
-
+          <th scope="col">Product Number</th>
+          <th scope="col">Rentable</th>
+          <th scope="col">Purchaseable</th>
+          <th scope="col">Price</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Sport</th>
       </tr>
       </thead>
+      <!-- Add booked  products to table -->
       <tbody>
-        <!-- Retrieves equipment and displays in table-->
       <% products.forEach((product, index) => { %>
         <tr>
           <th scope="row" class="tableData"><%= product.productNo %></th>
-
-          <td class="tableData"><%= product.productNo %></td>
           <td class="tableData"><%= product.rentable %></td>
           <td class="tableData"><%= product.purchasable %></td>
           <td class="tableData"><%= product.price %></td>
           <td class="tableData"><%= product.brand %></td>
           <td class="tableData"><%= product.sName %></td>
-          <td>
-            <a href="/allProducts/<%= product.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Products</a>
-          </td>
         </tr>
       <% }) %>
       </tbody>
     </table>
   <% } else { %>
-    <p class="text-center" class="tableData">Nothing found!</p>
+    <a href="/products">Back to Products</a>
   <% } %>
 </div>
 </div>

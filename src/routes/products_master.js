@@ -24,26 +24,10 @@ module.exports = {
       if (err) {
         res.redirect("/");
       }
+      console.log(result);
       res.render("allProducts.ejs", {
         title: "View All Products",
-        players: result
-      });
-    });
-  },
-
-  viewTransHistoryPage: (req, res) => {
-    // Show all of the training sessions that have been booked in the database
-    let query =
-      "SELECT t.transactionID, t.employeeID, t.tTime, t.tDate, t.totalPrice,  t.customerEmail, i.itemID, p.productNo FROM Transactions t, Item i, Product p WHERE i.transactionID = t.transactionID AND i.productNo = p.productNo"; //comment missing
-    db.query(query, (err, result) => {
-      // Query the database
-      console.log(result);
-      if (err) {
-        return res.status(500).send(err);
-      }
-      res.render("transactionHistory.ejs", {
-        title: "Transaction History",
-        transactions: result,
+        products: result,
         message: ""
       });
     });
@@ -384,5 +368,46 @@ module.exports = {
         });
       }
     });
+  },
+  productUpdatePage: (req, res) => {
+    res.render("productUpdate.ejs", {
+      title: "Update Products",
+      products: res,
+      message: ""
+    });
+  },
+
+  productUpdate: (req, res) => {
+    let toggle = req.body.purchasable; // FIX
+    let sName = req.body.sName;
+    let purchasable = false;
+
+    console.log(toggle);
+    console.log(sName);
+
+    if (toggle == "on") {
+      purchasable = true;
+      console.log(purchasable);
+    }
+
+    let query =
+    "UPDATE Product SET purchasable = TRUE WHERE Product.sName = '"+sName"'";
+
+    //if the toggle is on
+    if (purchasable) {
+      db.query(query, (err, result) => {
+        if (err) {
+          console.log(err);
+          res.redirect("/products/update");
+        } else {
+          // find a way to display the update when done
+          res.render("productUpdate.ejs", {
+            title: "Total Products sold for Employee",
+            products: result,
+            message: "Set all " + sName + " products to Purchasable"
+          });
+        }
+      });
+    }
   }
 };
