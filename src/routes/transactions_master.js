@@ -86,12 +86,21 @@ module.exports = {
     });
   },
 
-  //LOAD THE ADD TRANSACTION PAGE
   viewTransHistoryPage: (req, res) => {
-    res.render("transactionHistory.ejs", {
-      title: "Welcome to CountryClub | Process Transaction",
-      message: "",
-      transactions: res
+    // Show all of the training sessions that have been booked in the database
+    let query =
+      "SELECT t.transactionID, t.employeeID, t.tTime, t.tDate, t.totalPrice,  t.customerEmail, i.itemID, p.productNo FROM Transactions t, Item i, Product p WHERE i.transactionID = t.transactionID AND i.productNo = p.productNo"; //comment missing
+    db.query(query, (err, result) => {
+      // Query the database
+      console.log(result);
+      if (err) {
+        return res.status(500).send(err);
+      }
+      res.render("transactionHistory.ejs", {
+        title: "Transaction History",
+        transactions: result,
+        message: ""
+      });
     });
   },
 
