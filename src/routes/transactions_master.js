@@ -9,8 +9,9 @@ module.exports = {
     });
   },
 
+  //LOAD THE ADD TRANSACTION PAGE
   addTransactionPage: (req, res) => {
-    res.render("processTransaction.ejs", {
+    res.render("transactionAdd.ejs", {
       title: "Welcome to CountryClub | Process Transaction",
       message: "",
       transactions: res
@@ -49,6 +50,48 @@ module.exports = {
       if (err) throw err;
       console.log("Record Inserted");
       res.redirect("/transactionHistory");
+    });
+  },
+
+  //LOAD THE ADD TRANSACTION PAGE
+  viewCustTransPage: (req, res) => {
+    res.render("transactionCustRecord.ejs", {
+      title: "Welcome to CountryClub | Process Transaction",
+      message: "",
+      transactions: res
+    });
+  },
+
+  //GET VIEW: CUSTOMER TRANS HISTORY, POST REQUEST
+  viewCustTrans: (req, res) => {
+    // Show all of a trainers booked sessions
+    let customerEmail = req.body.customerEmail;
+    let query =
+      "SELECT * FROM Timeslot JOIN Trainer ON Trainer.TrainerID = Timeslot.TrainerID WHERE Trainer.TrainerID = '" +
+      customerEmail +
+      "'AND isAvailable = true";
+
+    db.query(query, (err, result) => {
+      // query database
+
+      console.log("Customer Transaction History" + result);
+      if (err) {
+        return res.status(500).send(err);
+      }
+      res.render("transactionCustRecord.ejs", {
+        title: "Customer Transaction History",
+        transactions: result,
+        message: ""
+      });
+    });
+  },
+
+  //LOAD THE ADD TRANSACTION PAGE
+  viewTransHistoryPage: (req, res) => {
+    res.render("transactionHistory.ejs", {
+      title: "Welcome to CountryClub | Process Transaction",
+      message: "",
+      transactions: res
     });
   },
 

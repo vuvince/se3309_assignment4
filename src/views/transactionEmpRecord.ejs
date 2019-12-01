@@ -1,0 +1,56 @@
+<% include partials/header.ejs %>
+<div class="table-wrapper">
+  <% if (transactions.length > 0) {%>
+<style>
+  .tableData{
+  color:white;
+}
+  </style>
+  <h2>Find Customer Transaction History</h2>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  
+  
+  <form method="post">
+      <label for="employeeID">Employee ID </label>
+      <input type="text" id="employeeID" name="employeeID">
+      <input type="submit" name="submit" value="View Results">
+  </form>
+
+  <!-- View training sessions-->
+    <body background = "https://i.redd.it/umpmoneoipn21.jpg">
+    <table class="table table-hovered">
+      <thead class="thead-dark">
+        <!-- Display columns for session-->
+        <h2>Results</h2>
+        <blockquote>All transactions placed by customer.employeeID</blockquote>
+      <tr>
+        <th scope="col">Transaction ID</th>
+        <th scope="col">Employee No</th>
+        <th scope="col">Time</th>
+        <th scope="col">Date</th>
+        <th scope="col">Total</th>
+
+      </tr>
+      </thead>
+      <!-- Add booked  sessions to table -->
+      <tbody>
+      <% transactions.forEach((transaction, index) => { %>
+        <tr>
+          <th scope="row" class="tableData"><%= transaction.ID %></th>
+          <td class="tableData"><%= transaction.transactionID %></td>
+          <td class="tableData"><%= transaction.employeeID %></td>
+          <td class="tableData"><%= transaction.tTime %></td>
+          <td class="tableData"><%= transaction.tDate %></td>
+          <td class="tableData"><%= transaction.totalPrice %></td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <!-- Default text if no transactions-->
+    <blockquote>No results found for customer.employeeID</blockquote>
+  <% } %>
+</div>
+</div>
+</body>
+</html>
