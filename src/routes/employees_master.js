@@ -11,7 +11,7 @@ module.exports = {
   addEmployeePage: (req, res) => {
     res.render("addEmployee.ejs", {
       title: "Welcome to CountryClub | Add Employee",
-      message: '',
+      message: ''
     });
   },
 
@@ -29,8 +29,7 @@ module.exports = {
       if (err) throw err;
       res.redirect("/employees");
     });
-  },
-
+  }
   
  
 };
