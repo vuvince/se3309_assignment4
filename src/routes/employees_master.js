@@ -1,4 +1,5 @@
 const fs = require("fs");
+var count = 2001; 
 
 module.exports = {
   employeeHome: (req, res) => {
@@ -12,11 +13,12 @@ module.exports = {
     res.render("addEmployee.ejs", {
       title: "Welcome to CountryClub | Add Employee",
       message: '',
+      emp: count++ 
     });
   },
 
   addEmployee: (req, res) => {
-    let employeeID = req.body.employeeID; 
+    let employeeID = count++; 
     let ePassword = req.body.ePassword;
     let fName = req.body.fName; 
     let lName = req.body.lName;

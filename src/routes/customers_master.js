@@ -88,8 +88,19 @@ module.exports = {
   deleteCustomer: (req, res) => {
     let customerEmail = req.body.customerEmail;
 
+    // delete from customer
     let query =
       "DELETE FROM Customer WHERE customerEmail='" + customerEmail + "'";
+
+    // delete from transactions too
+    let query2 = 
+      "DELETE FROM Transactions WHERE customerEmail='" + customerEmail + "'"; 
+    
+    db.query(query2, (err, result) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+    });
 
     db.query(query, (err, result) => {
       if (err) {
