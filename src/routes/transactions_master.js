@@ -29,7 +29,8 @@ module.exports = {
     if (!(employeeID > 0) || !(totalPrice > 0)) {
       res.render("transactionAdd.ejs", {
         transactions: res,
-        message: "Error Posting Transaction"
+        message: "Please enter numerical values for ID & Price",
+        title: ""
       });
       return;
     }
@@ -39,15 +40,29 @@ module.exports = {
 
     db.query(usernameQuery, (err, result) => {
       //comment missing
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
+      if (result.length == 0) {
+        res.render("transactionAdd.ejs", {
+          transactions: res,
+          message: "Invalid Email",
+          title: ""
+        });
         return;
       }
-      // res.render("transactionAdd.ejs", {
-      //   message: "Email does not exist",
-      //   transactions: res
-      // });
+    });
+
+    let userID =
+      "SELECT * FROM Employee WHERE employeeID = '" + employeeID + "'"; //comment missing
+
+    db.query(userID, (err, result) => {
+      //comment missing
+      if (result.length == 0) {
+        res.render("transactionAdd.ejs", {
+          transactions: res,
+          message: "Invalid Employee ID",
+          title: ""
+        });
+        return;
+      }
     });
 
     //QUERY [TODO]
@@ -66,10 +81,14 @@ module.exports = {
       //ERROR CAUSING ISSUES
       if (err) {
         return;
-        res.redirect("/transactions/processTransaction");
+        res.redirect("/logout");
+      } else {
+        res.render("transactionAdd.ejs", {
+          transactions: res,
+          message: "Success!",
+          title: ""
+        });
       }
-      res.redirect("/");
-      message = "Error Posting Transaction";
     });
   },
 
@@ -163,7 +182,6 @@ module.exports = {
       "SELECT customerEmail, SUM(totalPrice) AS totalSpent FROM Transactions GROUP BY customerEmail"; //comment missing
     db.query(query, (err, result) => {
       // Query the database
-      console.log(result);
       if (err) {
         res.redirect("/");
         message = "Error Getting Total Spent";

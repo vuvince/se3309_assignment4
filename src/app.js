@@ -21,7 +21,7 @@ const {
   employeeHome,
   addEmployeePage,
   addEmployee
-} = require("./routes/employees_master"); 
+} = require("./routes/employees_master");
 
 // Customers
 const {
@@ -101,7 +101,6 @@ app.post("/transactions/processTransaction", addTransaction);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
 app.get("/transactions/transactionHistory", viewTransHistoryPage);
-
 app.get("/transactions/employeeTransRecord", viewEmpTransPage);
 app.post("/transactions/employeeTransRecord", viewEmpTrans);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
@@ -133,20 +132,21 @@ app.get("/products", productHome);
 app.get("/products/allProducts", allProducts);
 app.get("/login", getLoginPage); //login page
 app.post("/login", loginAuth); //login page
+
+//Product routes
 app.get("/products/viewClubs", viewClubs);
 app.get("/products/viewCurlingBrooms", viewCurlingBrooms);
-app.get("/products/viewClubs", viewGoggles);
-app.get("/products/viewClubs", viewRacquets);
+app.get("/products/viewGoggles", viewGoggles);
+app.get("/products/viewRacquets", viewRacquets);
 app.get("/products/viewCountRentable", viewCountRentable);
 app.get("/products/viewSpecificGoggles", viewSpecificGoggles);
-
-app.get("products/totalSold", totalSoldPage); 
-app.post("products/totalSold", totalSold); 
+app.get("/products/totalSold", totalSoldPage);
+app.post("/products/totalSold", totalSold);
 
 // Employee routes
-app.get('/employees', employeeHome); 
-app.get('/addEmployee', addEmployeePage); 
-app.post('/addEmployee', addEmployee);
+app.get("/employees", employeeHome);
+app.get("/addEmployee", addEmployeePage);
+app.post("/addEmployee", addEmployee);
 
 // app.get("/add", addPlayerPage); //comment missing
 // app.get("/edit/:id", editPlayerPage); //comment missing
