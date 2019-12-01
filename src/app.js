@@ -20,6 +20,7 @@ const {
 const {
   transactionHome,
   addTransactionPage,
+  addTransaction,
   viewTransHistoryPage,
   viewEmpTransPage,
   viewEmpTrans,
@@ -59,6 +60,7 @@ app.use(fileUpload()); //comment missing
 app.get("/", getHomePage);
 app.get("/transactions", transactionHome);
 app.get("/transactions/processTransaction", addTransactionPage);
+app.post("/transactions/processTransaction", addTransaction);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
 app.get("/transactions/transactionHistory", viewTransHistoryPage);
