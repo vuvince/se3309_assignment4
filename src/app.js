@@ -115,15 +115,6 @@ app.get("/addCustomer", addCustomerPage);
 app.get("/editCustomer", editCustomerPage);
 app.post("/addCustomer", addCustomer);
 app.post("/editCustomer", editCustomer);
-app.get("/deleteCustomer", deleteCustomerPage);
-app.delete("/deleteCustomer", deleteCustomer);
-
-// customer routes
-app.get("/customers", customerHome);
-app.get("/addCustomer", addCustomerPage);
-app.get("/editCustomer", editCustomerPage);
-app.post("/addCustomer", addCustomer);
-app.post("/editCustomer", editCustomer);
 app.get("/deleteCustomers", deleteCustomerPage);
 app.post("/deleteCustomers", deleteCustomer);
 app.get("/searchCustomers", searchCustomersPage);

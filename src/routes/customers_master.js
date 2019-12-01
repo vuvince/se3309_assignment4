@@ -15,7 +15,7 @@ module.exports = {
       message: ""
     });
   },
-
+ 
   addCustomer: (req, res) => {
     let employeeID = req.body.employeeID; // FIX TO GET A RANDOM EXISTING EMPID
     let customerEmail = req.body.customerEmail;
@@ -103,27 +103,25 @@ module.exports = {
   searchCustomersPage: (req, res) => {
     res.render("searchCustomer.ejs", {
       title: "Welcome to CountryClub | Search Customers",
-      customers: res,
-      message: ""
+      message: "",
+      customers: res
     });
   },
 
   searchCustomers: (req, res) => {
-    // Show all of a trainers booked sessions
-    let customerEmail = req.body.customerEmail;
-    let query = "SELECT * FROM Customer WHERE customer = " + customerEmail;
-
+    let customerEmail = req.body.customerEmail; 
+    let query = "SELECT * FROM Customer WHERE customerEmail = '" + customerEmail + "'"; 
     db.query(query, (err, result) => {
-      // query database
-      if (err) {
-        //res.redirect("/customers");
-        console.log(err);
+      if(err) {
+        res.redirect("/customers/searchCustomers");
       }
       res.render("searchCustomer.ejs", {
-        title: "Search Customers",
+        title: "Customer Info",
         customers: result,
         message: ""
-      });
+      })
     });
-  }
+  },
+
+
 };
