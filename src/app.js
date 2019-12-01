@@ -36,7 +36,8 @@ const {
   viewEmpTransPage,
   viewEmpTrans,
   viewCustTransPage,
-  viewCustTrans
+  viewCustTrans,
+  viewTransTotalPage
 } = require("./routes/transactions_master");
 
 //MY SQL CONNECTION
@@ -79,6 +80,7 @@ app.get("/transactions/employeeTransRecord", viewEmpTransPage);
 app.post("/transactions/employeeTransRecord", viewEmpTrans);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
+app.get("/transactions/customerGrandTotal", viewTransTotalPage);
 
 // customer routes
 app.get("/customers", customerHome);

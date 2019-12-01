@@ -155,6 +155,28 @@ module.exports = {
     });
   },
 
+  //LOAD THE TTotal Page
+  //YEUUHH IT WORKS
+  viewTransTotalPage: (req, res) => {
+    // Show all of the training sessions that have been booked in the database
+    let query =
+      "SELECT customerEmail, SUM(totalPrice) AS totalSpent FROM Transactions GROUP BY customerEmail"; //comment missing
+    db.query(query, (err, result) => {
+      // Query the database
+      console.log(result);
+      if (err) {
+        res.redirect("/");
+        message = "Error Getting Total Spent";
+        return res.status(500).send(err);
+      }
+      res.render("transactionTotal.ejs", {
+        title: "Total Spent per Customer",
+        transactions: result,
+        message: ""
+      });
+    });
+  },
+
   editPlayerPage: (req, res) => {
     let playerId = req.params.id;
     let query = "SELECT * FROM `players` WHERE id = '" + playerId + "' "; //comment missing
