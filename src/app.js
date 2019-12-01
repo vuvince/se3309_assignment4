@@ -22,7 +22,9 @@ const {
   addTransactionPage,
   viewCustTrans, // POST
   viewCustTransPage, //GET
-  viewTransHistoryPage
+  viewTransHistoryPage,
+  viewEmpTransPage,
+  viewEmpTrans
 } = require("./routes/transactions_master");
 
 //MY SQL CONNECTION
@@ -60,6 +62,8 @@ app.get("/transactions/processTransaction", addTransactionPage);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
 app.get("/transactions/transactionHistory", viewTransHistoryPage);
+app.get("/transactions/employeeTransRecord", viewEmpTransPage);
+app.post("/transactions/employeeTransRecord", viewEmpTrans);
 
 // app.get("/add", addPlayerPage); //comment missing
 // app.get("/edit/:id", editPlayerPage); //comment missing

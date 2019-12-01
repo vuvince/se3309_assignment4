@@ -86,6 +86,37 @@ module.exports = {
     });
   },
 
+  //LOAD THE ADD TRANSACTION PAGE
+  viewEmpTransPage: (req, res) => {
+    res.render("transactionEmpRecord.ejs", {
+      title: "Welcome to CountryClub | Process Transaction",
+      message: "",
+      transactions: res
+    });
+  },
+
+  //POSTVIEW: EmpOMER TRANS HISTORY, POST REQUEST
+  viewEmpTrans: (req, res) => {
+    // Show all of a trainers booked sessions
+    let employeeID = req.body.employeeID;
+    let query = "SELECT * FROM Transactions WHERE employeeID = " + employeeID;
+
+    db.query(query, (err, result) => {
+      // query database
+
+      console.log("Employee Transaction History" + result);
+      if (err) {
+        res.redirect("/transactions/employeeTransRecord");
+      }
+      res.render("transactionEmpRecord.ejs", {
+        title: "Employee Transaction History",
+        transactions: result,
+        message: ""
+      });
+    });
+  },
+
+  //YEUUHH IT WORKS
   viewTransHistoryPage: (req, res) => {
     // Show all of the training sessions that have been booked in the database
     let query =
