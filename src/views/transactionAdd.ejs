@@ -1,8 +1,12 @@
 <% include partials/header.ejs %>
 <h2>Process a Transaction</h2>
-<% if (message != '') { %>
+<% if (message != '') { %> <% if (message == "Success!") { %>
+<p class="text-center text-success">
+  <%= message %>
+</p>
+<% } else {%>
 <p class="text-center text-danger"><%= message %></p>
-<% } %>
+<% } }%>
 <form method="post" enctype="multipart/form-data">
   <label>Transaction ID is<%= transactions.transactionID %></label>
   <br />
