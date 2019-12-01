@@ -1,17 +1,19 @@
 <h2>Process a Transaction</h2>
-
+<% if (message != '') { %>
+<p class="text-center text-danger"><%= message %></p>
+<% } %>
 <form method="post" enctype="multipart/form-data">
   <label>Transaction ID is<%= transactions.transactionID %></label>
   <br />
 
-  <label for="employeeNo">Provide your employeeNo: </label>
-  <input type="text" name="employeeNo" id="employeeNo" />
+  <label for="employeeID">Provide your employeeID: </label>
+  <input type="text" name="employeeID" id="employeeID" />
 
   <label for="customerEmail">Customer Email: </label>
   <input type="text" name="customerEmail" id="customerEmail" />
 
-  <label for="total">Total: </label>
-  <input type="text" name="total" id="total" />
+  <label for="totalPrice">Total: </label>
+  <input type="text" name="totalPrice" id="totalPrice" />
 
   <input type="submit" name="submit" value="Submit" />
 </form>
