@@ -25,13 +25,19 @@ const {
   viewTransHistoryPage
 } = require("./routes/transactions_master");
 
+//Products
+const {
+  productHome,
+  allProducts
+} = require("./routes/products_master");
+
 //MY SQL CONNECTION
 const db = mysql.createConnection({
   host: "localhost", //comment missing
-  user: "root", //comment missing
+  user: "admin", //comment missing
   password: "password", //comment missing
+  // database: "CountryClub"
   database: "CountryClub"
-  // database: "socka"
 }); //comment missing
 
 // connect to database
@@ -60,6 +66,8 @@ app.get("/transactions/processTransaction", addTransactionPage);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
 app.get("/transactions/transactionHistory", viewTransHistoryPage);
+app.get("/products", productHome);
+app.get("/products/allProducts", allProducts);
 
 // app.get("/add", addPlayerPage); //comment missing
 // app.get("/edit/:id", editPlayerPage); //comment missing

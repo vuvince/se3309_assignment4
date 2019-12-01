@@ -1,17 +1,17 @@
 module.exports = {
   getHomePage: (req, res) => {
-    let query = "SELECT * FROM `Employee` ORDER BY id ASC"; //comment missing
+    // let query = "SELECT * FROM `players` ORDER BY id ASC"; //comment missing
+
 
     //comment missing
-    db.query(query, (err, result) => {
+    db.query((err, result) => {
       if (err) {
-        // res.redirect("/");
-        console.log(err);
+        // res.redirect('/');
       }
-      res.render("index.ejs", {
-        title: "Welcome to Socka | View Employees",
-        employees: result
+      res.render('index.ejs', {
+        title: 'Welcome to Socka | View Players'
+        ,players: result
       });
     });
-  }
+  },
 };
