@@ -16,6 +16,13 @@ const {
   editPlayerPage
 } = require("./routes/player");
 
+// Employees
+const {
+  employeeHome,
+  addEmployeePage,
+  addEmployee
+} = require("./routes/employees_master"); 
+
 // Customers
 const {
   customerHome, 
@@ -42,14 +49,16 @@ const {
 //Products
 const {
   productHome,
-  allProducts
+  allProducts,
+  totalSold,
+  totalSoldPage
 } = require("./routes/products_master");
 
 //MY SQL CONNECTION
 const db = mysql.createConnection({
   host: "localhost", //comment missing
-  user: "admin", //comment missing
-  password: "password", //comment missing
+  user: "root", //comment missing
+  password: "root", //comment missing
   // database: "CountryClub"
   database: "CountryClub"
 }); //comment missing
@@ -80,8 +89,8 @@ app.get("/transactions/processTransaction", addTransactionPage);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
 app.get("/transactions/transactionHistory", viewTransHistoryPage);
-app.get("/transactions/employeeTransRecord", viewEmpTransPage);
-app.post("/transactions/employeeTransRecord", viewEmpTrans);
+//app.get("/transactions/employeeTransRecord", viewEmpTransPage);
+//app.post("/transactions/employeeTransRecord", viewEmpTrans);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
 
@@ -99,6 +108,14 @@ app.post('/searchCustomers', searchCustomers);
 
 app.get("/products", productHome);
 app.get("/products/allProducts", allProducts);
+
+app.get("products/totalSold", totalSoldPage); 
+app.post("products/totalSold", totalSold); 
+
+// Employee routes
+app.get('/employees', employeeHome); 
+app.get('/addEmployee', addEmployeePage); 
+app.post('/addEmployee', addEmployee);
 
 // app.get("/add", addPlayerPage); //comment missing
 // app.get("/edit/:id", editPlayerPage); //comment missing

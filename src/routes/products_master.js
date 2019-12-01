@@ -242,4 +242,33 @@ module.exports = {
             });
         });
     },
+
+    totalSoldPage: (req, res) => {
+      res.render('totalProducts.ejs', {
+        title: "Total Products"
+      }) 
+    },
+
+    totalSold: (req, res) => {
+      let password = req.body.password; // FIX
+      let fName = req.body.fName; 
+      let lName = req.body.lName; 
+  
+      let query =
+      "SELECT COUNT(transactionID) as amountSold, SUM(totalPrice) as dollarSold FROM Transactions t, Employee e WHERE e.fName ='" 
+      + fName + "' AND e.lName='" + lName + "' AND e.password='" + password + "'"; 
+      
+      db.query(query, (err, result) => {
+          if(err) {
+              res.redirect("/products/totalSold");
+          }
+          // find a way to display the update when done
+          res.render("totalProducts.ejs", {
+            title: "Total Products sold for Employee",
+            products: result,
+            message: ""
+          });
+      });
+    }
+  
 };
