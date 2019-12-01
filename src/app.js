@@ -18,15 +18,14 @@ const {
 
 // Customers
 const {
-  customerHome, 
-  addCustomerPage, 
+  customerHome,
+  addCustomerPage,
   editCustomerPage,
   addCustomer,
   editCustomer,
   deleteCustomerPage,
   deleteCustomer
-} 
-  = require("./routes/customers_master"); 
+} = require("./routes/customers_master");
 
 // Transactions
 const {
@@ -44,7 +43,7 @@ const {
 const db = mysql.createConnection({
   host: "localhost", //comment missing
   user: "root", //comment missing
-  password: "root", //comment missing
+  password: "password", //comment missing
   database: "CountryClub"
   // database: "socka"
 }); //comment missing
@@ -81,16 +80,14 @@ app.post("/transactions/employeeTransRecord", viewEmpTrans);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
 
-
 // customer routes
-app.get('/customers', customerHome); 
-app.get('/addCustomer', addCustomerPage); 
-app.get('/editCustomer', editCustomerPage); 
-app.post('/addCustomer', addCustomer); 
-app.post('/editCustomer', editCustomer); 
-app.get('/deleteCustomer', deleteCustomerPage);
-app.delete('/deleteCustomer', deleteCustomer);  
-
+app.get("/customers", customerHome);
+app.get("/addCustomer", addCustomerPage);
+app.get("/editCustomer", editCustomerPage);
+app.post("/addCustomer", addCustomer);
+app.post("/editCustomer", editCustomer);
+app.get("/deleteCustomer", deleteCustomerPage);
+app.delete("/deleteCustomer", deleteCustomer);
 
 // app.get("/add", addPlayerPage); //comment missing
 // app.get("/edit/:id", editPlayerPage); //comment missing
