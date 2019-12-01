@@ -1,13 +1,15 @@
 <% include partials/header.ejs %>
 <div class="col-sm-4">
     <span class="glyphicon glyphicon-off logo-small"></span>
-    <a href="/login">LOGOUT</a>
 </div>
   
 <div class="container-fluid text-center">
 <h2>SERVICES</h2>
 <h4>What we offer</h4>
 <br>
+<% if (message != '') { %>
+  <p class="text-center text-danger"><%= message %></p>
+  <% } %>
 <div class="row">
   <div class="col-sm-4">
     <span class="glyphicon glyphicon-heart logo-small"></span>

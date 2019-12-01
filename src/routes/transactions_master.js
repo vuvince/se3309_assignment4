@@ -19,37 +19,57 @@ module.exports = {
   },
 
   addTransaction: (req, res) => {
-    let transactionID =
-      "SET transactionID = SELECT RAND()*(100000-999999)+100000";
-    let employeedID = req.body.employeeID;
-    let tTime = req.body.last_name;
-    let tDate = req.body.phoneNumber;
+    let transactionID = "RAND()*(1000000-9999999)+10000000";
+    let employeeID = req.body.employeeID;
     let customerEmail = req.body.customerEmail;
-    let total = req.body.totalPrice;
+    let totalPrice = req.body.totalPrice;
+    console.log(employeeID);
+    console.log(customerEmail);
+    console.log(totalPrice);
+    if (!(employeeID > 0) || !(totalPrice > 0)) {
+      res.render("transactionAdd.ejs", {
+        transactions: res,
+        message: "Error Posting Transaction"
+      });
+      return;
+    }
+
+    let usernameQuery =
+      "SELECT * FROM Customer WHERE customerEmail = '" + customerEmail + "'"; //comment missing
+
+    db.query(usernameQuery, (err, result) => {
+      //comment missing
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      }
+      // res.render("transactionAdd.ejs", {
+      //   message: "Email does not exist",
+      //   transactions: res
+      // });
+    });
+
     //QUERY [TODO]
-    var sqlInsert =
-      "INSERT INTO PersonalTraining (StudentID, TrainerID, TimeslotID, dateBooked) VALUES ((SELECT StudentID FROM Student WHERE firstName = '" +
-      firstName +
-      "' AND lastName = '" +
-      lastName +
-      "' AND phoneNumber = '" +
-      phoneNumber +
-      "' AND email = '" +
-      email +
-      "'),'" +
-      trainer_id +
-      "','" +
-      timeslotID +
-      "','" +
-      date +
+    let postQuery =
+      "INSERT INTO Transactions SET transactionID = " +
+      transactionID +
+      ", tTime = CURRENT_TIME(), tDate = CURRENT_DATE(), totalPrice = " +
+      totalPrice +
+      ", employeeID = (SELECT employeeID FROM Employee WHERE employeeID = " +
+      employeeID +
+      "), customerEmail = (SELECT customerEmail FROM Customer WHERE customerEmail = '" +
+      customerEmail +
       "');";
 
-    db.query(sqlInsert, function(err, result) {
-      // All info to be inserted
-
-      if (err) throw err;
-      console.log("Record Inserted");
-      res.redirect("/transactionHistory");
+    db.query(postQuery, (err, result) => {
+      //ERROR CAUSING ISSUES
+      if (err) {
+        return;
+        res.redirect("/transactions/processTransaction");
+      }
+      res.redirect("/");
+      message = "Error Posting Transaction";
     });
   },
 
@@ -135,84 +155,28 @@ module.exports = {
     });
   },
 
-  addPlayer: (req, res) => {
-    //comment missing
-    if (!req.files) {
-      return res.status(400).send("No files were uploaded.");
-    }
-
-    let message = "";
-    let first_name = req.body.first_name;
-    let last_name = req.body.last_name;
-    let position = req.body.position;
-    let number = req.body.number;
-    let username = req.body.username;
-    let uploadedFile = req.files.image;
-    let image_name = uploadedFile.name;
-    let fileExtension = uploadedFile.mimetype.split("/")[1];
-    image_name = username + "." + fileExtension;
-
-    let usernameQuery =
-      "SELECT * FROM `players` WHERE user_name = '" + username + "'"; //comment missing
-
-    db.query(usernameQuery, (err, result) => {
-      //comment missing
+  //LOAD THE TTotal Page
+  //YEUUHH IT WORKS
+  viewTransTotalPage: (req, res) => {
+    // Show all of the training sessions that have been booked in the database
+    let query =
+      "SELECT customerEmail, SUM(totalPrice) AS totalSpent FROM Transactions GROUP BY customerEmail"; //comment missing
+    db.query(query, (err, result) => {
+      // Query the database
+      console.log(result);
       if (err) {
+        res.redirect("/");
+        message = "Error Getting Total Spent";
         return res.status(500).send(err);
       }
-      if (result.length > 0) {
-        //comment missing
-        message = "Username already exists";
-        res.render("add-player.ejs", {
-          message,
-          title: "Welcome to Socka | Add a new player"
-        });
-      } else {
-        //comment missing
-        if (
-          uploadedFile.mimetype === "image/png" ||
-          uploadedFile.mimetype === "image/jpeg" ||
-          uploadedFile.mimetype === "image/gif"
-        ) {
-          //comment missing
-          uploadedFile.mv(`public/assets/img/${image_name}`, err => {
-            if (err) {
-              return res.status(500).send(err);
-            }
-            //comment missing
-            let query =
-              "INSERT INTO `players` (first_name, last_name, position, number, image, user_name) VALUES ('" +
-              first_name +
-              "', '" +
-              last_name +
-              "', '" +
-              position +
-              "', '" +
-              number +
-              "', '" +
-              image_name +
-              "', '" +
-              username +
-              "')";
-            db.query(query, (err, result) => {
-              if (err) {
-                return res.status(500).send(err);
-              }
-              res.redirect("/");
-            });
-          });
-        } else {
-          //comment missing
-          message =
-            "Invalid File format. Only 'gif', 'jpeg' and 'png' images are allowed.";
-          res.render("add-player.ejs", {
-            message,
-            title: "Welcome to Socka | Add a new player"
-          });
-        }
-      }
+      res.render("transactionTotal.ejs", {
+        title: "Total Spent per Customer",
+        transactions: result,
+        message: ""
+      });
     });
   },
+
   editPlayerPage: (req, res) => {
     let playerId = req.params.id;
     let query = "SELECT * FROM `players` WHERE id = '" + playerId + "' "; //comment missing
