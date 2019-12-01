@@ -1,0 +1,45 @@
+
+<style>
+    .tableData{
+        color:white;
+    }
+
+</style> 
+
+<!-- View list of all equipment-->
+<div class="table-wrapper">
+  <h2 class="tableData">View All Clubs</h2>
+  <!-- Adds titles to table-->
+  <% if (club.length > 0) {%>
+    <body>
+    <table class="table table-hovered">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Product Number</th>
+        <th scope="col">Club Length</th>
+        <th scope="col">Club Type</th>
+      </tr>
+      </thead>
+      <tbody>
+        <!-- Retrieves equipment and displays in table-->
+      <% Club.forEach((club, index) => { %>
+        <tr>
+          <th scope="row" class="tableData"><%= club.productNo %></th>
+
+          <td class="tableData"><%= club.productNo %></td>
+          <td class="tableData"><%= club.cLength %></td>
+          <td class="tableData"><%= club.cType %></td>
+          <td>
+            <a href="/clubs/<%= Club.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Clubs</a>
+          </td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p class="text-center" class="tableData">Nothing found!</p>
+  <% } %>
+</div>
+</div>
+</body>
+</html>

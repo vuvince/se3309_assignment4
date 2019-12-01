@@ -1,0 +1,47 @@
+
+<style>
+    .tableData{
+        color:white;
+    }
+
+</style> 
+
+<!-- View list of all equipment-->
+<div class="table-wrapper">
+  <h2 class="tableData">View All Goggles</h2>
+  <!-- Adds titles to table-->
+  <% if (Goggles.length > 0) {%>
+    <body>
+    <table class="table table-hovered">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Product Number</th>
+        <th scope="col">Size</th>
+        <th scope="col">Style</th>
+        <th scope="col">Colour</th>
+      </tr>
+      </thead>
+      <tbody>
+        <!-- Retrieves equipment and displays in table-->
+      <% Goggles.forEach((goggle, index) => { %>
+        <tr>
+          <th scope="row" class="tableData"><%= Goggles.productNo %></th>
+
+          <td class="tableData"><%= goggle.productNo %></td>
+          <td class="tableData"><%= goggle.size %></td>
+          <td class="tableData"><%= goggle.style %></td>
+          <td class="tableData"><%= goggle.colour %></td>
+          <td>
+            <a href="/goggles/<%= CurlingBroom.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Curling Brooms</a>
+          </td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p class="text-center" class="tableData">Nothing found!</p>
+  <% } %>
+</div>
+</div>
+</body>
+</html>
