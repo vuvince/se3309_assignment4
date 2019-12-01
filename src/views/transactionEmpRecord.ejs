@@ -1,34 +1,34 @@
 <% include partials/header.ejs %>
 <div class="table-wrapper">
+    <h2>Find Employee Transaction History</h2>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+  
+    <form method="post">
+        <label for="employeeID">Employee ID </label>
+        <input type="text" id="employeeID" name="employeeID">
+        <input type="submit" name="submit" value="View Results">
+    </form>
   <% if (transactions.length > 0) {%>
 <style>
   .tableData{
-  color:white;
+  color:black;
 }
   </style>
-  <h2>Find Customer Transaction History</h2>
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
   
-  
-  <form method="post">
-      <label for="employeeID">Employee ID </label>
-      <input type="text" id="employeeID" name="employeeID">
-      <input type="submit" name="submit" value="View Results">
-  </form>
 
   <!-- View training sessions-->
-    <body background = "https://i.redd.it/umpmoneoipn21.jpg">
+    <body>
     <table class="table table-hovered">
       <thead class="thead-dark">
         <!-- Display columns for session-->
         <h2>Results</h2>
-        <blockquote>All transactions placed by customer.employeeID</blockquote>
+        <blockquote>All transactions placed by transactions.employeeID</blockquote>
       <tr>
         <th scope="col">Transaction ID</th>
-        <th scope="col">Employee No</th>
         <th scope="col">Time</th>
         <th scope="col">Date</th>
         <th scope="col">Total</th>
+        <th scope="col">Customer Email</th>
 
       </tr>
       </thead>
@@ -36,12 +36,11 @@
       <tbody>
       <% transactions.forEach((transaction, index) => { %>
         <tr>
-          <th scope="row" class="tableData"><%= transaction.ID %></th>
-          <td class="tableData"><%= transaction.transactionID %></td>
-          <td class="tableData"><%= transaction.employeeID %></td>
+          <th scope="row" class="tableData"><%= transaction.transactionID %></th>
           <td class="tableData"><%= transaction.tTime %></td>
           <td class="tableData"><%= transaction.tDate %></td>
           <td class="tableData"><%= transaction.totalPrice %></td>
+          <td class="tableData"><%= transaction.customerEmail %></td>
         </tr>
       <% }) %>
       </tbody>

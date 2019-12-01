@@ -62,21 +62,21 @@ module.exports = {
     });
   },
 
-  //GET VIEW: CUSTOMER TRANS HISTORY, POST REQUEST
+  //POSTVIEW: TRANS HISTORY, POST REQUEST
   viewCustTrans: (req, res) => {
     // Show all of a trainers booked sessions
     let customerEmail = req.body.customerEmail;
     let query =
-      "SELECT * FROM Timeslot JOIN Trainer ON Trainer.TrainerID = Timeslot.TrainerID WHERE Trainer.TrainerID = '" +
+      "SELECT * FROM Transactions WHERE customerEmail = '" +
       customerEmail +
-      "'AND isAvailable = true";
+      "'";
 
     db.query(query, (err, result) => {
       // query database
 
       console.log("Customer Transaction History" + result);
       if (err) {
-        return res.status(500).send(err);
+        res.redirect("/transactions/customerTransRecord");
       }
       res.render("transactionCustRecord.ejs", {
         title: "Customer Transaction History",
@@ -86,6 +86,37 @@ module.exports = {
     });
   },
 
+  //LOAD THE ADD TRANSACTION PAGE
+  viewEmpTransPage: (req, res) => {
+    res.render("transactionEmpRecord.ejs", {
+      title: "Welcome to CountryClub | Process Transaction",
+      message: "",
+      transactions: res
+    });
+  },
+
+  //POSTVIEW: EmpOMER TRANS HISTORY, POST REQUEST
+  viewEmpTrans: (req, res) => {
+    // Show all of a trainers booked sessions
+    let employeeID = req.body.employeeID;
+    let query = "SELECT * FROM Transactions WHERE employeeID = " + employeeID;
+
+    db.query(query, (err, result) => {
+      // query database
+
+      console.log("Employee Transaction History" + result);
+      if (err) {
+        res.redirect("/transactions/employeeTransRecord");
+      }
+      res.render("transactionEmpRecord.ejs", {
+        title: "Employee Transaction History",
+        transactions: result,
+        message: ""
+      });
+    });
+  },
+
+  //YEUUHH IT WORKS
   viewTransHistoryPage: (req, res) => {
     // Show all of the training sessions that have been booked in the database
     let query =
