@@ -7,7 +7,7 @@ const path = require("path");
 const app = express();
 
 const port = 5000;
-const { getHomePage } = require("./routes/index");
+const { getHomePage, getLoginPage, loginAuth } = require("./routes/index");
 const {
   addPlayerPage,
   addPlayer,
@@ -25,8 +25,8 @@ const {
 
 // Customers
 const {
-  customerHome, 
-  addCustomerPage, 
+  customerHome,
+  addCustomerPage,
   editCustomerPage,
   addCustomer,
   editCustomer,
@@ -34,16 +34,19 @@ const {
   deleteCustomer,
   searchCustomersPage,
   searchCustomers
-} 
-  = require("./routes/customers_master"); 
+} = require("./routes/customers_master");
 
 // Transactions
 const {
   transactionHome,
   addTransactionPage,
-  viewCustTrans, // POST
-  viewCustTransPage, //GET
-  viewTransHistoryPage
+  addTransaction,
+  viewTransHistoryPage,
+  viewEmpTransPage,
+  viewEmpTrans,
+  viewCustTransPage,
+  viewCustTrans,
+  viewTransTotalPage
 } = require("./routes/transactions_master");
 
 //Products
@@ -51,14 +54,20 @@ const {
   productHome,
   allProducts,
   totalSold,
-  totalSoldPage
+  totalSoldPage,
+  viewClubs,
+  viewCurlingBrooms,
+  viewGoggles,
+  viewRacquets,
+  viewCountRentable,
+  viewSpecificGoggles
 } = require("./routes/products_master");
 
 //MY SQL CONNECTION
 const db = mysql.createConnection({
   host: "localhost", //comment missing
   user: "root", //comment missing
-  password: "root", //comment missing
+  password: "password", //comment missing
   // database: "CountryClub"
   database: "CountryClub"
 }); //comment missing
@@ -86,28 +95,46 @@ app.use(fileUpload()); //comment missing
 app.get("/", getHomePage);
 app.get("/transactions", transactionHome);
 app.get("/transactions/processTransaction", addTransactionPage);
+app.post("/transactions/processTransaction", addTransaction);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
 app.get("/transactions/transactionHistory", viewTransHistoryPage);
-//app.get("/transactions/employeeTransRecord", viewEmpTransPage);
-//app.post("/transactions/employeeTransRecord", viewEmpTrans);
+
+app.get("/transactions/employeeTransRecord", viewEmpTransPage);
+app.post("/transactions/employeeTransRecord", viewEmpTrans);
 app.get("/transactions/customerTransRecord", viewCustTransPage);
 app.post("/transactions/customerTransRecord", viewCustTrans);
-
+app.get("/transactions/customerGrandTotal", viewTransTotalPage);
 
 // customer routes
-app.get('/customers', customerHome); 
-app.get('/addCustomer', addCustomerPage); 
-app.get('/editCustomer', editCustomerPage); 
-app.post('/addCustomer', addCustomer); 
-app.post('/editCustomer', editCustomer); 
-app.get('/deleteCustomers', deleteCustomerPage);
-app.post('/deleteCustomers', deleteCustomer); 
-app.get('/searchCustomers', searchCustomersPage);
-app.post('/searchCustomers', searchCustomers);   
+app.get("/customers", customerHome);
+app.get("/addCustomer", addCustomerPage);
+app.get("/editCustomer", editCustomerPage);
+app.post("/addCustomer", addCustomer);
+app.post("/editCustomer", editCustomer);
+app.get("/deleteCustomer", deleteCustomerPage);
+app.delete("/deleteCustomer", deleteCustomer);
 
+// customer routes
+app.get("/customers", customerHome);
+app.get("/addCustomer", addCustomerPage);
+app.get("/editCustomer", editCustomerPage);
+app.post("/addCustomer", addCustomer);
+app.post("/editCustomer", editCustomer);
+app.get("/deleteCustomers", deleteCustomerPage);
+app.post("/deleteCustomers", deleteCustomer);
+app.get("/searchCustomers", searchCustomersPage);
+app.post("/searchCustomers", searchCustomers);
 app.get("/products", productHome);
 app.get("/products/allProducts", allProducts);
+app.get("/login", getLoginPage); //login page
+app.post("/login", loginAuth); //login page
+app.get("/products/viewClubs", viewClubs);
+app.get("/products/viewCurlingBrooms", viewCurlingBrooms);
+app.get("/products/viewClubs", viewGoggles);
+app.get("/products/viewClubs", viewRacquets);
+app.get("/products/viewCountRentable", viewCountRentable);
+app.get("/products/viewSpecificGoggles", viewSpecificGoggles);
 
 app.get("products/totalSold", totalSoldPage); 
 app.post("products/totalSold", totalSold); 
