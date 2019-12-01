@@ -17,7 +17,7 @@ module.exports = {
   },
 
   addCustomer: (req, res) => {
-    let employeeID = "1234"; // FIX TO GET A RANDOM EXISTING EMPID
+    let employeeID = req.body.employeeID; // FIX TO GET A RANDOM EXISTING EMPID
     let customerEmail = req.body.customerEmail;
     let fName = req.body.fName;
     let lName = req.body.lName;
@@ -34,20 +34,13 @@ module.exports = {
   },
 
   editCustomerPage: (req, res) =>{
-    let customerEmail = req.params.customerEmail; 
-    let query = "SELECT * FROM Customer WHERE customerEmail = '" + customerEmail + "'"; 
-    db.query(query, (err, result) => {
-        if(err)
-            return res.status(500).send(err);
-        res.render('editCustomer.ejs', {
-            title: "Edit Customer"
-        }) 
-    })
-    console.log("editCustomerPage"); 
+    res.render('editCustomer.ejs', {
+      title: "Edit Customer"
+    }) 
   },
 
   editCustomer: (req, res) => {
-    let customerEmail = req.params.customerEmail; // FIX
+    let customerEmail = req.body.customerEmail; // FIX
     let fName = req.body.fName; 
     let lName = req.body.lName; 
     let cPhone = req.body.cPhone; 
