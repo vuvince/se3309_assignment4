@@ -20,11 +20,11 @@ const {
 const {
   transactionHome,
   addTransactionPage,
-  viewCustTrans, // POST
-  viewCustTransPage, //GET
   viewTransHistoryPage,
   viewEmpTransPage,
-  viewEmpTrans
+  viewEmpTrans,
+  viewCustTransPage,
+  viewCustTrans
 } = require("./routes/transactions_master");
 
 //MY SQL CONNECTION
@@ -64,6 +64,8 @@ app.post("/transactions/customerTransRecord", viewCustTrans);
 app.get("/transactions/transactionHistory", viewTransHistoryPage);
 app.get("/transactions/employeeTransRecord", viewEmpTransPage);
 app.post("/transactions/employeeTransRecord", viewEmpTrans);
+app.get("/transactions/customerTransRecord", viewCustTransPage);
+app.post("/transactions/customerTransRecord", viewCustTrans);
 
 // app.get("/add", addPlayerPage); //comment missing
 // app.get("/edit/:id", editPlayerPage); //comment missing

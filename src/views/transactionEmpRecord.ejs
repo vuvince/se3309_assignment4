@@ -1,9 +1,8 @@
 <% include partials/header.ejs %>
 <div class="table-wrapper">
-    <h2>Find Customer Transaction History</h2>
+    <h2>Find Employee Transaction History</h2>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    
-    
+  
     <form method="post">
         <label for="employeeID">Employee ID </label>
         <input type="text" id="employeeID" name="employeeID">
@@ -23,7 +22,7 @@
       <thead class="thead-dark">
         <!-- Display columns for session-->
         <h2>Results</h2>
-        <blockquote>All transactions placed by customer.employeeID</blockquote>
+        <blockquote>All transactions placed by transactions.employeeID</blockquote>
       <tr>
         <th scope="col">Transaction ID</th>
         <th scope="col">Time</th>

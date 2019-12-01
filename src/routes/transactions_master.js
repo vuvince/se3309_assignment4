@@ -62,21 +62,21 @@ module.exports = {
     });
   },
 
-  //GET VIEW: CUSTOMER TRANS HISTORY, POST REQUEST
+  //POSTVIEW: TRANS HISTORY, POST REQUEST
   viewCustTrans: (req, res) => {
     // Show all of a trainers booked sessions
     let customerEmail = req.body.customerEmail;
     let query =
-      "SELECT * FROM Timeslot JOIN Trainer ON Trainer.TrainerID = Timeslot.TrainerID WHERE Trainer.TrainerID = '" +
+      "SELECT * FROM Transactions WHERE customerEmail = '" +
       customerEmail +
-      "'AND isAvailable = true";
+      "'";
 
     db.query(query, (err, result) => {
       // query database
 
       console.log("Customer Transaction History" + result);
       if (err) {
-        return res.status(500).send(err);
+        res.redirect("/transactions/customerTransRecord");
       }
       res.render("transactionCustRecord.ejs", {
         title: "Customer Transaction History",

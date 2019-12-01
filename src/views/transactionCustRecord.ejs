@@ -1,31 +1,31 @@
 <% include partials/header.ejs %>
 <div class="table-wrapper">
+    <h2>Find Customer Transaction History</h2>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+  
+    <form method="post">
+        <label for="customerEmail">Employee ID </label>
+        <input type="text" id="customerEmail" name="customerEmail">
+        <input type="submit" name="submit" value="View Results">
+    </form>
   <% if (transactions.length > 0) {%>
 <style>
   .tableData{
-  color:white;
+  color:black;
 }
   </style>
-  <h2>Find Customer Transaction History</h2>
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
   
 
-  <form method="post">
-      <label for="customerEmail">Customer Email </label>
-      <input type="text" id="customerEmail" name="customerEmail">
-      <input type="submit" name="submit" value="View Results">
-  </form>
-
   <!-- View training sessions-->
-    <body background = "https://i.redd.it/umpmoneoipn21.jpg">
+    <body>
     <table class="table table-hovered">
       <thead class="thead-dark">
         <!-- Display columns for session-->
         <h2>Results</h2>
-        <blockquote>All transactions placed by customer.customerEmail</blockquote>
+        <blockquote>All transactions placed by transactions.customerEmail</blockquote>
       <tr>
         <th scope="col">Transaction ID</th>
-        <th scope="col">Employee No</th>
+        <th scope="col">Employee ID</th>
         <th scope="col">Time</th>
         <th scope="col">Date</th>
         <th scope="col">Total</th>
@@ -36,8 +36,7 @@
       <tbody>
       <% transactions.forEach((transaction, index) => { %>
         <tr>
-          <th scope="row" class="tableData"><%= transaction.ID %></th>
-          <td class="tableData"><%= transaction.transactionID %></td>
+          <th scope="row" class="tableData"><%= transaction.transactionID %></th>
           <td class="tableData"><%= transaction.employeeID %></td>
           <td class="tableData"><%= transaction.tTime %></td>
           <td class="tableData"><%= transaction.tDate %></td>
@@ -48,7 +47,7 @@
     </table>
   <% } else { %>
     <!-- Default text if no transactions-->
-    <blockquote>No results found for customer.customerEmail</blockquote>
+    <blockquote>No results found for transactions.customerEmail</blockquote>
   <% } %>
 </div>
 </div>
