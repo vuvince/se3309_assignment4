@@ -1,7 +1,7 @@
-
+<% include partials/header.ejs %>
 <style>
     .tableData{
-        color:white;
+        color:black;
     }
 
 </style> 
@@ -10,19 +10,25 @@
 <div class="table-wrapper">
   <h2 class="tableData">Amount of Total Available Rentals</h2>
   <!-- Adds titles to table-->
-  <% if (Racquet.length > 0) {%>
+  <% if (products.length > 0) {%>
     <body>
     <table class="table table-hovered">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Rentable Count</th>
+        <th scope="col">Product Number</th>
+        <th scope="col">Sport</th>
+        <th scope="col">Rentable</th>
+        <th scope="col">Purchasable</th>
       </tr>
       </thead>
       <tbody>
         <!-- Retrieves equipment and displays in table-->
-      <% Product.forEach((product, index) => { %>
+      <% products.forEach((product, index) => { %>
         <tr>
           <th scope="row" class="tableData"><%= product.productNo %></th>
+          <th scope="row" class="tableData"><%= product.sName %></th>
+          <th scope="row" class="tableData"><%= product.rentable %></th>
+          <th scope="row" class="tableData"><%= product.purchasable %></th>
         </tr>
       <% }) %>
       </tbody>

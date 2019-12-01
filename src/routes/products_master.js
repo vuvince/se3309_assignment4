@@ -122,16 +122,20 @@ module.exports = {
   viewCountRentable: (req, res) => {
     // See a list of equipment in a catalog with the ages of them
     let rentable = req.body.rentable;
-    let query = "SELECT COUNT(rentable) FROM Product WHERE rentable = 1)";
+    let query =
+      "SELECT productNo, sName, rentable, purchasable FROM Product WHERE rentable = true";
 
     db.query(query, (err, result) => {
       // Query the database
       if (err) {
-        res.redirect("/");
+        res.render("index.ejs", {
+          title: "View amount of available rentals",
+          message: "Error finding rentable products"
+        });
       }
       res.render("rentableCount.ejs", {
         title: "View amount of available rentals",
-        players: result
+        products: result
       });
     });
   },
@@ -391,7 +395,9 @@ module.exports = {
     }
 
     let query =
-    "UPDATE Product SET purchasable = TRUE WHERE Product.sName = '"+sName"'";
+      "UPDATE Product SET purchasable = TRUE WHERE Product.sName = '" +
+      sName +
+      "'";
 
     //if the toggle is on
     if (purchasable) {
