@@ -25,14 +25,12 @@
         <!-- Retrieves equipment and displays in table-->
       <% CurlingBroom.forEach((cBroom, index) => { %>
         <tr>
-          <th scope="row" class="tableData"><%= CurlingBroom.productNo %></th>
-
-          <td class="tableData"><%= cBroom.productNo %></td>
+          <th scope="row" class="tableData"><%= cBroom.productNo %></th>
           <td class="tableData"><%= cBroom.shaftMaterial %></td>
           <td class="tableData"><%= cBroom.bristleHardness %></td>
           <td class="tableData"><%= cBroom.shaftLength %></td>
           <td>
-            <a href="/curlingBrooms/<%= CurlingBroom.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Curling Brooms</a>
+            <a href="/curlingBrooms/<%= cBroom.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Curling Brooms</a>
           </td>
         </tr>
       <% }) %>
