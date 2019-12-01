@@ -1,1 +1,19 @@
-<h1>Hi</h1>
+<h2>Process a Transaction</h2>
+
+<form method="post" enctype="multipart/form-data">
+  <label>Transaction ID is<%= transactions.transactionID %></label>
+  <br />
+
+  <label for="employeeNo">Provide your employeeNo: </label>
+  <input type="text" name="employeeNo" id="employeeNo" />
+
+  <label for="customerEmail">Customer Email: </label>
+  <input type="text" name="customerEmail" id="customerEmail" />
+
+  <label for="total">Total: </label>
+  <input type="text" name="total" id="total" />
+
+  <input type="submit" name="submit" value="Submit" />
+</form>
+
+<a href="/transactions">Back to Transactions</a>

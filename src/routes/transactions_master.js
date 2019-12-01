@@ -4,13 +4,51 @@ module.exports = {
   transactionHome: (req, res) => {
     res.render("transactions.ejs", {
       title: "Transactions",
-      message: ""
+      message: "",
+      transactions: res
     });
   },
-  processTransaction: (req, res) => {
+
+  addTransactionPage: (req, res) => {
     res.render("processTransaction.ejs", {
-      title: "Process Transaction",
-      message: ""
+      title: "Welcome to CountryClub | Process Transaction",
+      message: "",
+      transactions: res
+    });
+  },
+
+  addTransaction: (req, res) => {
+    let transactionID =
+      "SET transactionID = SELECT RAND()*(100000-999999)+100000";
+    let employeedID = req.body.employeeID;
+    let tTime = req.body.last_name;
+    let tDate = req.body.phoneNumber;
+    let customerEmail = req.body.customerEmail;
+    let total = req.body.totalPrice;
+    //QUERY [TODO]
+    var sqlInsert =
+      "INSERT INTO PersonalTraining (StudentID, TrainerID, TimeslotID, dateBooked) VALUES ((SELECT StudentID FROM Student WHERE firstName = '" +
+      firstName +
+      "' AND lastName = '" +
+      lastName +
+      "' AND phoneNumber = '" +
+      phoneNumber +
+      "' AND email = '" +
+      email +
+      "'),'" +
+      trainer_id +
+      "','" +
+      timeslotID +
+      "','" +
+      date +
+      "');";
+
+    db.query(sqlInsert, function(err, result) {
+      // All info to be inserted
+
+      if (err) throw err;
+      console.log("Record Inserted");
+      res.redirect("/transactionHistory");
     });
   },
 

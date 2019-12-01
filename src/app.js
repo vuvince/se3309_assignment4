@@ -18,8 +18,8 @@ const {
 
 // Transactions
 const {
-  transactionHome,
-  processTransaction
+  transactionHome
+  // processTransaction
 } = require("./routes/transactions_master");
 const db = mysql.createConnection({
   host: "localhost", //comment missing
@@ -58,7 +58,7 @@ app.get("/transactions", transactionHome);
 // app.post("/add", addPlayer); //comment missing
 // app.post("/edit/:id", editPlayer); //comment missing
 
-app.get("/transactions/processTransaction", processTransaction);
+// app.get("/transactions/processTransaction", processTransaction);
 
 // set the app to listen on the port
 app.listen(port, () => {

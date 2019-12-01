@@ -2,6 +2,8 @@
 # TABLE STRUCTURE FOR: Employee
 #
 
+CREATE SCHEMA CountryClub;
+
 USE CountryClub;
 
 DROP TABLE IF EXISTS `Employee`;

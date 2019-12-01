@@ -1,0 +1,55 @@
+<% include partials/header.ejs %>
+<div class="table-wrapper">
+  <% if (transactions.length > 0) {%>
+  <style>
+    .tableData {
+      color: white;
+    }
+  </style>
+
+  <!-- View training sessions-->
+  <body>
+    <table class="table table-hovered">
+      <thead class="thead-dark">
+        <!-- Display columns for session-->
+        <h2>Results</h2>
+        <blockquote>
+          All transactions placed by customer.customerEmail
+        </blockquote>
+        <tr>
+          <th scope="col">Transaction ID</th>
+          <th scope="col">Employee No</th>
+          <th scope="col">Time</th>
+          <th scope="col">Date</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <!-- Add booked  sessions to table -->
+      <tbody>
+        <% transactions.forEach((transaction, index) => { %>
+        <tr>
+          <th scope="row" class="tableData"><%= transaction.ID %></th>
+          <td class="tableData"><%= transaction.firstName %></td>
+          <td class="tableData"><%= transaction.lastName %></td>
+          <td class="tableData"><%= transaction.trainingDate %></td>
+          <td class="tableData"><%= transaction.startTime %></td>
+          <td class="tableData"><%= transaction.endTime %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <% } else { %>
+    <blockquote>No results found for employee.fName</blockquote>
+    <% } %>
+    <h2>Find Employee Transaction History</h2>
+
+    <form method="post">
+      <label for="employeeNo">Employee No </label>
+      <input type="text" id="employeeNo" name="employeeNo" />
+      <input type="submit" name="submit" value="View Results" />
+    </form>
+
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <a href="../transactions.php">Back to Transaction Info</a>
+  </body>
+</div>
