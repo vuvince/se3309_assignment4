@@ -262,35 +262,36 @@ module.exports = {
     });
   },
 
- //LOAD THE ADD TRANSACTION PAGE
- amountOnDatePage: (req, res) => {
-  res.render("transactionsOnDate.ejs", {
-    title: "Welcome to CountryClub | Transactions on Date",
-    message: "",
-    transactions: res
-  });
-},
-
-//POSTVIEW: EmpOMER TRANS HISTORY, POST REQUEST
-amountOnDate: (req, res) => {
-  // Show all of a trainers booked sessions
-  let tDate = req.body.tDate;
-  let query = "SELECT SUM(totalPrice) AS totalPrice FROM Transactions WHERE tDate = '" + tDate + "'";
-
-  db.query(query, (err, result) => {
-    // query database
-
-    console.log("Transaction History On this Date" + result);
-    if (err) {
-      res.redirect("/transactions/transactionsOnDate");
-    }
+  //LOAD THE ADD TRANSACTION PAGE
+  amountOnDatePage: (req, res) => {
     res.render("transactionsOnDate.ejs", {
-      title: "Total Ammount On Date",
-      transactions: result,
-      message: ""
+      title: "Welcome to CountryClub | Transactions on Date",
+      message: "",
+      transactions: res
     });
-  });
-},
+  },
 
+  //POSTVIEW: EmpOMER TRANS HISTORY, POST REQUEST
+  amountOnDate: (req, res) => {
+    // Show all of a trainers booked sessions
+    let tDate = req.body.tDate;
+    let query =
+      "SELECT SUM(totalPrice) AS totalPrice FROM Transactions WHERE tDate = '" +
+      tDate +
+      "'";
 
+    db.query(query, (err, result) => {
+      // query database
+
+      console.log("Transaction History On this Date" + result);
+      if (err) {
+        res.redirect("/transactions/transactionsOnDate");
+      }
+      res.render("transactionsOnDate.ejs", {
+        title: "Total Ammount On Date",
+        transactions: result,
+        message: ""
+      });
+    });
+  }
 };

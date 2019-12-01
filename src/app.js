@@ -8,13 +8,6 @@ const app = express();
 
 const port = 5000;
 const { getHomePage, getLoginPage, loginAuth } = require("./routes/index");
-const {
-  addPlayerPage,
-  addPlayer,
-  deletePlayer,
-  editPlayer,
-  editPlayerPage
-} = require("./routes/player");
 
 // Employees
 const {
@@ -143,12 +136,6 @@ app.post("/products/update", productUpdate);
 app.get("/employees", employeeHome);
 app.get("/addEmployee", addEmployeePage);
 app.post("/addEmployee", addEmployee);
-
-// app.get("/add", addPlayerPage); //comment missing
-// app.get("/edit/:id", editPlayerPage); //comment missing
-// app.get("/delete/:id", deletePlayer); //comment missing
-// app.post("/add", addPlayer); //comment missing
-// app.post("/edit/:id", editPlayer); //comment missing
 
 // set the app to listen on the port
 app.listen(port, () => {

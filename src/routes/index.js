@@ -1,38 +1,19 @@
 module.exports = {
   getHomePage: (req, res) => {
-    // let query = "SELECT * FROM `Employee` ORDER BY id ASC"; //comment missing
-
-    //comment missing
-    // db.query(query, (err, result) => {
-    //   if (err) {
-    //     // res.redirect("/");
-    //     console.log(err);
-    //   }
     res.render("index.ejs", {
       title: "Welcome to CountryClub",
       employees: res,
       message: ""
     });
-    // });
   },
   getLoginPage: (req, res) => {
-    // let query = "SELECT * FROM `Employee` ORDER BY id ASC"; //comment missing
-
-    //comment missing
-    // db.query(query, (err, result) => {
-    //   if (err) {
-    //     // res.redirect("/");
-    //     console.log(err);
-    //   }
     res.render("login.ejs", {
       title: "Welcome to CountryClub | Login",
       employees: res,
       message: ""
     });
-    // });
   },
   loginAuth: (req, res) => {
-    //TO WORK ON
     let employeeID = req.body.employeeID;
     let ePassword = req.body.ePassword;
     let query =
