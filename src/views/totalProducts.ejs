@@ -3,14 +3,16 @@
     <a href="/transactions">Back to Transactions</a>
     <h2>Find Customer Transaction History</h2>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-  
+    <% if (message != '') { %>
+      <p class="text-center text-danger"><%= message %></p>
+      <% } %>
     <form method="post">
         <label for="fName">First Name </label>
         <input type="text" id="fName" name="fName">
-        <label for="lName">Last Name </label>
-        <input type="text" id="lName" name="lName">
+        <label for="employeeID">ID </label>
+        <input type="text" id="employeeID" name="employeeID">
         <label for="password">Password </label>
-        <input type="text" id="password" name="password">
+        <input type="password" id="password" name="password">
         <input type="submit" name="submit" value="View Results">
     </form>
   <% if (products.length > 0) {%>
