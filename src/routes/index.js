@@ -6,6 +6,7 @@ module.exports = {
     db.query(query, (err, result) => {
       if (err) {
         // res.redirect("/");
+        console.log(err);
       }
       res.render("index.ejs", {
         title: "Welcome to Socka | View Employees",
