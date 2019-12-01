@@ -1,5 +1,4 @@
 const fs = require("fs");
-var count = 2001; 
 
 module.exports = {
   employeeHome: (req, res) => {
@@ -12,13 +11,12 @@ module.exports = {
   addEmployeePage: (req, res) => {
     res.render("addEmployee.ejs", {
       title: "Welcome to CountryClub | Add Employee",
-      message: '',
-      emp: count++ 
+      message: ''
     });
   },
 
   addEmployee: (req, res) => {
-    let employeeID = count++; 
+    let employeeID = req.body.employeeID; 
     let ePassword = req.body.ePassword;
     let fName = req.body.fName; 
     let lName = req.body.lName;
@@ -31,8 +29,7 @@ module.exports = {
       if (err) throw err;
       res.redirect("/employees");
     });
-  },
-
+  }
   
  
 };
