@@ -24,9 +24,11 @@ const {
   addCustomer,
   editCustomer,
   deleteCustomerPage,
-  deleteCustomer
+  deleteCustomer,
+  searchCustomersPage,
+  searchCustomers
 } = require("./routes/customers_master");
-
+  
 // Transactions
 const {
   transactionHome,
@@ -104,6 +106,18 @@ app.post("/editCustomer", editCustomer);
 app.get("/deleteCustomer", deleteCustomerPage);
 app.delete("/deleteCustomer", deleteCustomer);
 
+
+
+// customer routes
+app.get('/customers', customerHome); 
+app.get('/addCustomer', addCustomerPage); 
+app.get('/editCustomer', editCustomerPage); 
+app.post('/addCustomer', addCustomer); 
+app.post('/editCustomer', editCustomer); 
+app.get('/deleteCustomers', deleteCustomerPage);
+app.post('/deleteCustomers', deleteCustomer); 
+app.get('/searchCustomers', searchCustomersPage);
+app.post('/searchCustomers', searchCustomers);   
 app.get("/products", productHome);
 app.get("/products/allProducts", allProducts);
 app.get("/products/viewClubs", viewClubs);
