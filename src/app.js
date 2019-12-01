@@ -30,8 +30,8 @@ const db = mysql.createConnection({
   host: "localhost", //comment missing
   user: "root", //comment missing
   password: "password", //comment missing
-  // database: "CountryClub"
-  database: "socka"
+  database: "CountryClub"
+  // database: "socka"
 }); //comment missing
 
 // connect to database
