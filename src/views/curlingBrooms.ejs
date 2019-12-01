@@ -1,0 +1,47 @@
+
+<style>
+    .tableData{
+        color:white;
+    }
+
+</style> 
+
+<!-- View list of all equipment-->
+<div class="table-wrapper">
+  <h2 class="tableData">View All Curling Brooms</h2>
+  <!-- Adds titles to table-->
+  <% if (CurlingBroom.length > 0) {%>
+    <body>
+    <table class="table table-hovered">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Product Number</th>
+        <th scope="col">Shaft Material</th>
+        <th scope="col">Bristle Hardness</th>
+        <th scope="col">Shaft Length</th>
+      </tr>
+      </thead>
+      <tbody>
+        <!-- Retrieves equipment and displays in table-->
+      <% CurlingBroom.forEach((cBroom, index) => { %>
+        <tr>
+          <th scope="row" class="tableData"><%= CurlingBroom.productNo %></th>
+
+          <td class="tableData"><%= cBroom.productNo %></td>
+          <td class="tableData"><%= cBroom.shaftMaterial %></td>
+          <td class="tableData"><%= cBroom.bristleHardness %></td>
+          <td class="tableData"><%= cBroom.shaftLength %></td>
+          <td>
+            <a href="/curlingBrooms/<%= CurlingBroom.productNo %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">View Curling Brooms</a>
+          </td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p class="text-center" class="tableData">Nothing found!</p>
+  <% } %>
+</div>
+</div>
+</body>
+</html>
